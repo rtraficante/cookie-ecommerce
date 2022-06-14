@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../store/allProducts";
+import { Button } from "@material-ui/core";
 
 export const AddProduct = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ export const AddProduct = () => {
         value={values.inventory}
         onChange={handleChange}
       />
-      <button type="submit">Submit</button>
+      <Button variant="contained" color="primary" type="submit">
+        Submit
+      </Button>
     </form>
   );
 };
