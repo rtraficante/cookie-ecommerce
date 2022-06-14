@@ -23,6 +23,11 @@ const Product = db.define("product", {
   description: {
     type: Sequelize.TEXT,
   },
+  imageURL: {
+    type: Sequelize.STRING,
+    defaultValue:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr4r9PRE74oLi8wbRFJaKe-xoDrMpEK7jdLoU2_ahPNJ5GGJeQYhRztY2nxyKVnLf645A&usqp=CAU",
+  },
 });
 
 module.exports = Product;

@@ -1,29 +1,30 @@
 import React, { useEffect } from "react";
 import { fetchProducts } from "../store/allProducts";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-function AllProducts(props) {
-  const { products, loadProducts } = props;
+function AllProducts() {
+  const products = useSelector((state) => state.allProducts);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    loadProducts();
+    dispatch(fetchProducts());
   }, []);
+
+  console.log(products);
 
   return (
     <div>
       {products.map((product) => (
-        <div key={product.id}>{product.name}</div>
+        <Link to={`/product/${product.id}`} key={product.id}>
+          <img src={product.imageURL} alt="image of cookie" />
+          <h4>{product.name}</h4>
+          <p>{product.price}</p>
+        </Link>
       ))}
     </div>
   );
 }
 
-const mapState = (state) => ({
-  products: state.allProducts,
-});
-
-const mapDispatch = (dispatch) => ({
-  loadProducts: () => dispatch(fetchProducts()),
-});
-
-export default connect(mapState, mapDispatch)(AllProducts);
+export default AllProducts;
