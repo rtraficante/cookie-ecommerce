@@ -12,8 +12,6 @@ function AllProducts() {
     dispatch(fetchProducts());
   }, []);
 
-  console.log(products);
-
   return (
     <div>
       {products.map((product) => (
