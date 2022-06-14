@@ -14,5 +14,13 @@ router.get("/", async (req, res) => {
 });
 
 // POST for adding product
+router.post("/", async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+    res.send(product);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 module.exports = router;
