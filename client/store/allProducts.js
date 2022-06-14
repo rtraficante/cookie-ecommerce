@@ -20,7 +20,7 @@ export const fetchProducts = () => {
 
 const initalState = [];
 
-export const productsReducder = (state = initalState, action) => {
+export const productsReducer = (state = initalState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS:
       return action.products;

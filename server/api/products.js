@@ -13,4 +13,6 @@ router.get("/", async (req, res) => {
   }
 });
 
+// POST for adding product
+
 module.exports = router;

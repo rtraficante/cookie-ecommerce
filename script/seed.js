@@ -10,6 +10,15 @@ const monster = {
   description: "cool cookie scary monster fun",
   price: 39.99,
   inventory: 364,
+  imageURL:
+    "https://sallysbakingaddiction.com/wp-content/uploads/2013/06/one-big-monster-cookie.jpg",
+};
+
+const sugar = {
+  name: "Sugar Cookie",
+  description: "very sweet cookie much delicious",
+  price: 12.98,
+  inventory: 2,
 };
 
 /**
@@ -27,7 +36,10 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
-  const products = await Promise.all([Product.create(monster)]);
+  const products = await Promise.all([
+    Product.create(monster),
+    Product.create(sugar),
+  ]);
 
   console.log(`seeded ${users.length} users and ${products.length} products`);
   console.log(`seeded successfully`);
