@@ -38,6 +38,16 @@ export const authenticate = (username, password, method) => async dispatch => {
   }
 }
 
+export const registration = (email, username, password, method) => async dispatch => {
+  try {
+    const res = await axios.post(`/auth/${method}`, {email, username, password})
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({error: authError}))
+  }
+}
+
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)
   history.push('/login')
