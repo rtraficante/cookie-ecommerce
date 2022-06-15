@@ -5,6 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import AllProducts from "./components/AllProducts";
 import AddProduct from "./components/AddProduct";
+import UpdateProduct from "./components/UpdateProduct";
 import { me } from "./store";
 
 /**
@@ -17,23 +18,26 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
+    // add isAdmin conditional
 
     return (
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route exact path="/home" component={Home} />
             <Redirect to="/home" />
-            <Route path="/products" component={AllProducts} />
-            <Route path="/add-product" component={AddProduct} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/add" component={AddProduct} />
+            <Route path="/products/:id/update" component={UpdateProduct} />
           </Switch>
         ) : (
           <Switch>
             <Route path="/" exact component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/products" component={AllProducts} />
-            <Route path="/add-product" component={AddProduct} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route exact path="/products/add" component={AddProduct} />
+            <Route path="/products/:id/update" component={UpdateProduct} />
           </Switch>
         )}
       </div>

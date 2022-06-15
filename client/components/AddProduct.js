@@ -10,6 +10,8 @@ export const AddProduct = () => {
     name: "",
     price: 0,
     inventory: 0,
+    imageURL: "",
+    description: "",
   });
 
   const handleChange = (event) => {
@@ -46,6 +48,20 @@ export const AddProduct = () => {
         type="number"
         placeholder="Inventory"
         value={values.inventory}
+        onChange={handleChange}
+      />
+      <input
+        name="description"
+        type="text"
+        placeholder="Description"
+        value={values.description}
+        onChange={handleChange}
+      />
+      <input
+        name="imageURL"
+        type="text"
+        placeholder="Image URL"
+        value={values.imageURL}
         onChange={handleChange}
       />
       <Button variant="contained" color="primary" type="submit">
