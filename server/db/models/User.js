@@ -22,14 +22,12 @@ const User = db.define('user', {
   },
   email: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
     validate: {
-      isEmail: {
-        msg: 'must be valid email address'
-      }
-    }
-  }
+      isEmail: true,
+    },
+    unique: true,
+  },
 });
 
 module.exports = User;

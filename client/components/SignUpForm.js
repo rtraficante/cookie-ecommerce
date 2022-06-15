@@ -1,12 +1,12 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {registration} from '../store'
+import React from 'react';
+import { connect } from 'react-redux';
+import { registration } from '../store';
 
 /**
  * COMPONENT
  */
-const SignUpForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+const SignUpForm = (props) => {
+  const { name, displayName, handleSubmit, error } = props;
 
   return (
     <div>
@@ -35,8 +35,8 @@ const SignUpForm = props => {
         {error && error.response && <div> {error.response.data} </div>}
       </form>
     </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
@@ -45,25 +45,25 @@ const SignUpForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapSignup = state => {
+const mapSignup = (state) => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.auth.error
-  }
-}
+    error: state.auth.error,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const email = evt.target.email.value
-      const username = evt.target.username.value
-      const password = evt.target.password.value
-      dispatch(registration(email, username, password, formName))
-    }
-  }
-}
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const username = evt.target.username.value;
+      const password = evt.target.password.value;
+      dispatch(registration(email, username, password, formName));
+    },
+  };
+};
 
-export const Signup = connect(mapSignup, mapDispatch)(SignUpForm)
+export const Signup = connect(mapSignup, mapDispatch)(SignUpForm);
