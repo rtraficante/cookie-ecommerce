@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { fetchProducts } from "../store/allProducts";
+import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -15,12 +16,20 @@ function AllProducts() {
   return (
     <div>
       {products.map((product) => (
-        <Link to={`/product/${product.id}`} key={product.id}>
-          <img src={product.imageURL} alt="image of cookie" />
-          <h4>{product.name}</h4>
-          <p>{product.price}</p>
-          <button onClick={() => {}}>Add To Cart</button>
-        </Link>
+        <div key={product.id}>
+          <Link to={`/product/${product.id}`}>
+            <img src={product.imageURL} alt="image of cookie" />
+            <h4>{product.name}</h4>
+            <p>{product.price}</p>
+          </Link>
+          <button
+            onClick={() => {
+              dispatch(addToCart(product));
+            }}
+          >
+            Add To Cart
+          </button>
+        </div>
       ))}
     </div>
   );

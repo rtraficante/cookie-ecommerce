@@ -3,7 +3,9 @@ const {
   models: { Cart, Product },
 } = require("../db");
 
-// router.get()
+// router.get('/:id', async (req, res) => {
+
+// })
 
 router.post("/", async (req, res) => {
   try {
