@@ -20,6 +20,14 @@ const User = db.define('user', {
     allowNull: false,
     defaultValue: false,
   },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
+    unique: true,
+  },
 });
 
 module.exports = User;
