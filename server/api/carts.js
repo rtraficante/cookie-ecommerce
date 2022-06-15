@@ -1,11 +1,16 @@
 const router = require("express").Router();
 const {
-  models: { Cart, Product },
+  models: { Cart, Product, User },
 } = require("../db");
 
-// router.get('/:id', async (req, res) => {
-
-// })
+router.get("/", async (req, res) => {
+  try {
+    // const cart = user.getCart();
+    // res.send(cart);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 router.post("/", async (req, res) => {
   try {
