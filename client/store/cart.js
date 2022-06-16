@@ -31,27 +31,34 @@ export const addToCart = (product, qty) => {
         },
       });
 
-      
-
-      dispatch(_addToCart(data, qty, getState().auth));
+      dispatch(_addToCart(data.product, qty));
+      localStorage.setItem("cart", JSON.stringify(data.cart));
     } else {
       const { data } = await axios.get(`/api/products/${product.id}`);
+
       dispatch(_addToCart(data, qty));
+      localStorage.setItem("cart", JSON.stringify(getState().cart));
     }
-
-
-
-    localStorage.setItem("cart", JSON.stringify(getState().cart));
   };
 };
 
-export const removeFromCartGuest = (id) => (dispatch, getState) => {
-  dispatch(_removeFromCart(id));
+export const removeFromCart = (id) => {
+  return async (dispatch, getState) => {
+    if (getState().auth.id > 0) {
+      const { data } = await axios.delete(`/api/cart/${id}`, {
+        headers: {
+          user: getState().auth.id,
+        },
+      });
+      dispatch(_removeFromCart(id));
+      localStorage.setItem("cart", JSON.stringify(data.cart));
+    } else {
+      dispatch(_removeFromCart(id));
 
-  localStorage.setItem("cart", JSON.stringify(getState().cart));
+      localStorage.setItem("cart", JSON.stringify(getState().cart));
+    }
+  };
 };
-
-
 
 const cartLocalStorage = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))

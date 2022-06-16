@@ -40,6 +40,10 @@ async function seed() {
     }),
   ]);
 
+  users.forEach(async (user) => {
+    await user.createOrder();
+  });
+
   const products = await Promise.all([
     Product.create(monster),
     Product.create(sugar),

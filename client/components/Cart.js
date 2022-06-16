@@ -3,7 +3,7 @@ import CartItem from "./CartItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart, removeFromCartGuest } from "../store/cart";
+import { addToCart, removeFromCart } from "../store/cart";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -14,8 +14,8 @@ const Cart = () => {
     dispatch(addToCart(product, qty));
   };
 
-  const removeFromCart = (id) => {
-    dispatch(removeFromCartGuest(id));
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
   };
 
   return (
@@ -28,7 +28,7 @@ const Cart = () => {
             key={item.id}
             product={item}
             handleQtyChange={handleQtyChange}
-            removeFromCart={removeFromCart}
+            removeFromCart={handleRemoveFromCart}
           />
         ))
       )}
