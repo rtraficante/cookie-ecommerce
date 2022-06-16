@@ -1,12 +1,12 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const Cart = db.define("cart", {
+const Order = db.define("order", {
   status: {
-    type: Sequelize.STRING,
+    type: Sequelize.ENUM("Pending", "Cancelled", "Purchased"),
     allowNull: false,
     defaultValue: "Pending",
   },
 });
 
-module.exports = Cart;
+module.exports = Order;

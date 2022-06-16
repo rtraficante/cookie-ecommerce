@@ -17,7 +17,7 @@ function AllProducts() {
     <div>
       {products.map((product) => (
         <div key={product.id}>
-          <Link to={`/product/${product.id}`}>
+          <Link to={`/products/${product.id}`}>
             <img src={product.imageURL} alt="image of cookie" />
             <h4>{product.name}</h4>
             <p>{product.price}</p>
