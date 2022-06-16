@@ -1,41 +1,88 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login } from './components/LoginForm';
-import { Signup } from './components/SignUpForm';
-import Home from './components/Home';
-import { me } from './store';
-import AllProducts from './components/AllProducts';
-import SingleProduct from './components/SingleProduct';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import Home from "./components/Home";
+import AllProducts from "./components/AllProducts";
+import AddProduct from "./components/AddProduct";
+import UpdateProduct from "./components/UpdateProduct";
+import SingleProduct from "./components/SingleProduct";
+import AdminOverview from "./components/AdminOverview";
+import { me } from "./store";
+import { Login } from "./components/LoginForm";
+import { Signup } from "./components/SignUpForm";
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
   componentDidMount() {
     this.props.loadInitialData();
   }
 
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, isAdmin } = this.props;
+
+    console.log("inside render: Logged in status:", isLoggedIn);
+    console.log("inside render: Admin status: ", isAdmin);
 
     return (
       <div>
-        {isLoggedIn ? (
-          <Switch>
-            <Route path="/home" component={Home} />
-            <Redirect to="/home" />
-            <Route path="/products" component={AllProducts} />
+        <Switch>
+          is logged in / is admin /// else
+          <Route exact path="/">
+            {isLoggedIn ? <Redirect to="/home" /> : <Login />}
+          </Route>
+          <Route exact path="/home">
+            {isLoggedIn ? (
+              <>
+                <Home />
+                <AllProducts />
+              </>
+            ) : (
+              <AllProducts />
+            )}
+          </Route>
+          <Route exact path="/login">
+            {isLoggedIn ? (
+              <Redirect to="/home" />
+            ) : (
+              <>
+                <p>Log yo'self in!</p>
+                <Login />
+                <p>OR</p>
+                <p>Join us to satisfy your sweet tooth!</p>
+                <Signup />
+              </>
+            )}
+          </Route>
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/products/:id" component={SingleProduct} />
+          <Route exact path="/admin">
+            {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/admin/products/add" component={AddProduct} />
+          <Route path="/admin/products/:id/update" component={UpdateProduct} />
+        </Switch>
+
+        {/* {isLoggedIn ? (
+
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/add" component={AddProduct} />
+            <Route path="/products/:id/update" component={UpdateProduct} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/products" component={AllProducts} />
-            <Route exact path="/products/:id" component={SingleProduct} />
-          </Switch>
-        )}
+            <Route exact path="/products/add" component={AddProduct} />
+            <Route path="/products/:id/update" component={UpdateProduct} />
+
+        )} */}
       </div>
     );
   }
@@ -49,6 +96,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    isAdmin: !!state.auth.isAdmin,
   };
 };
 
