@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Order, Product, User },
+  models: { Order, Product, User, OrderItem },
 } = require("../db");
 
 router.post("/", async (req, res) => {
@@ -9,14 +9,20 @@ router.post("/", async (req, res) => {
       include: [{ model: Order }],
     });
 
-    if (user.orders.length === 0) {
-      await user.createOrder();
+    const pendingOrders = user.orders.filter(
+      (order) => order.status === "Pending"
+    );
+
+    let order;
+    if (pendingOrders.length === 0) {
+      order = await user.createOrder();
+    } else {
+      order = pendingOrders[0];
     }
-    const order = await user.getOrders({ where: { status: "Pending" } });
 
     const product = await Product.findByPk(req.body.id);
-    await order[0].addProduct(product);
-    const cart = await order[0].getProducts();
+    await order.addProduct(product);
+    const cart = await order.getProducts();
 
     res.send({ product, cart });
   } catch (err) {

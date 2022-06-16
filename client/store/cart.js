@@ -60,9 +60,10 @@ export const removeFromCart = (id) => {
   };
 };
 
-const cartLocalStorage = localStorage.getItem("cart")
-  ? JSON.parse(localStorage.getItem("cart"))
-  : [];
+const cartLocalStorage =
+  localStorage.getItem("cart") !== "undefined"
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
 
 const initialState = cartLocalStorage;
 

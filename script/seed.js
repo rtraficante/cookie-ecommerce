@@ -41,7 +41,9 @@ async function seed() {
   ]);
 
   users.forEach(async (user) => {
-    await user.createOrder();
+    await user.createOrder({
+      status: "Purchased",
+    });
   });
 
   const products = await Promise.all([
