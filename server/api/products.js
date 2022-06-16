@@ -1,10 +1,10 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
   models: { Product },
-} = require("../db");
+} = require('../db');
 
 // GET /products - fetches all products in database
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const products = await Product.findAll();
     res.send(products);
@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // POST for adding product
 router.post("/", async (req, res) => {
   try {
@@ -39,6 +40,13 @@ router.delete("/:productID", async function (req, res, next) {
     const result = await product.destroy();
     res.send(result);
   } catch (err) {
+=======
+router.get('/:id', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(`${req.params.id}`);
+    res.send(product);
+  } catch (err) {
+>>>>>>> c0f4b534eca16f24a5458e5794ae91f9aa0f9bed
     next(err);
   }
 });
