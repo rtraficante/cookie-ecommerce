@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
-import Home from "./components/Home";
-import AllProducts from "./components/AllProducts";
-import AddProduct from "./components/AddProduct";
-import UpdateProduct from "./components/UpdateProduct";
-import SingleProduct from "./components/SingleProduct";
-import AdminOverview from "./components/AdminOverview";
-import { me } from "./store";
-import { Login } from "./components/LoginForm";
-import { Signup } from "./components/SignUpForm";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import Home from './components/Home';
+import AllProducts from './components/AllProducts';
+import AddProduct from './components/AddProduct';
+import UpdateProduct from './components/UpdateProduct';
+import SingleProduct from './components/SingleProduct';
+import AdminOverview from './components/adminViews/AdminOverview';
+import { me } from './store';
+import { Login } from './components/LoginForm';
+import { Signup } from './components/SignUpForm';
 
 /**
  * COMPONENT
@@ -25,13 +25,12 @@ class Routes extends Component {
   render() {
     const { isLoggedIn, isAdmin } = this.props;
 
-    console.log("inside render: Logged in status:", isLoggedIn);
-    console.log("inside render: Admin status: ", isAdmin);
+    console.log('inside render: Logged in status:', isLoggedIn);
+    console.log('inside render: Admin status: ', isAdmin);
 
     return (
       <div>
         <Switch>
-          is logged in / is admin /// else
           <Route exact path="/">
             {isLoggedIn ? <Redirect to="/home" /> : <Login />}
           </Route>
@@ -67,22 +66,6 @@ class Routes extends Component {
           <Route exact path="/admin/products/add" component={AddProduct} />
           <Route path="/admin/products/:id/update" component={UpdateProduct} />
         </Switch>
-
-        {/* {isLoggedIn ? (
-
-            <Route exact path="/products" component={AllProducts} />
-            <Route path="/products/add" component={AddProduct} />
-            <Route path="/products/:id/update" component={UpdateProduct} />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/products" component={AllProducts} />
-            <Route exact path="/products/add" component={AddProduct} />
-            <Route path="/products/:id/update" component={UpdateProduct} />
-
-        )} */}
       </div>
     );
   }
