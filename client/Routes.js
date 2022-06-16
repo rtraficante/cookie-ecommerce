@@ -6,6 +6,7 @@ import AllProducts from "./components/AllProducts";
 import AddProduct from "./components/AddProduct";
 import UpdateProduct from "./components/UpdateProduct";
 import SingleProduct from "./components/SingleProduct";
+import AdminOverview from "./components/AdminOverview";
 import { me } from "./store";
 import { Login } from "./components/LoginForm";
 import { Signup } from "./components/SignUpForm";
@@ -14,6 +15,9 @@ import { Signup } from "./components/SignUpForm";
  * COMPONENT
  */
 class Routes extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
   componentDidMount() {
     this.props.loadInitialData();
   }
@@ -21,21 +25,33 @@ class Routes extends Component {
   render() {
     const { isLoggedIn, isAdmin } = this.props;
 
+    // console.log("inside render: Logged in status:", isLoggedIn);
+    // console.log("inside render: Admin status: ", isAdmin);
+
     return (
       <div>
         <Switch>
+          is logged in / is admin /// else
           <Route exact path="/">
+            {isLoggedIn ? <Redirect to="/home" /> : <Login />}
+          </Route>
+          <Route exact path="/home">
+            {isLoggedIn ? <Home /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/login">
             {isLoggedIn ? <Redirect to="/home" /> : <Login />}
           </Route>
           <Route exact path="/products" component={AllProducts} />
           <Route exact path="/products/:id" component={SingleProduct} />
+          <Route exact path="/admin">
+            {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
+          </Route>
           <Route exact path="/admin/products/add" component={AddProduct} />
-          <Route path="/products/:id/update" component={UpdateProduct} />
+          <Route path="/admin/products/:id/update" component={UpdateProduct} />
         </Switch>
 
         {/* {isLoggedIn ? (
-            <Route exact path="/home" component={Home} />
-            <Redirect to="/home" />
+
             <Route exact path="/products" component={AllProducts} />
             <Route path="/products/add" component={AddProduct} />
             <Route path="/products/:id/update" component={UpdateProduct} />
