@@ -19,12 +19,22 @@ function SingleProduct(props) {
     props.history.push("/cart");
   };
 
+  const handleQtyChange = (event) => {
+    setQty(event.target.value);
+  };
+
   return (
     <div>
       <img src={product.imageURL} alt="Image of cookie" />
       <h4>{product.name}</h4>
       <p>{product.price}</p>
       <p>Description: {product.description}</p>
+      <select value={qty} onChange={handleQtyChange}>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
       <button onClick={handleAddToCart}>Add To Cart</button>
     </div>
   );

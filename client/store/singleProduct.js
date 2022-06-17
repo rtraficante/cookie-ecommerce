@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const FETCH_PRODUCT = 'FETCH_PRODUCT';
+const FETCH_PRODUCT = "FETCH_PRODUCT";
 
 export const _fetchProduct = (product) => ({
   type: FETCH_PRODUCT,

@@ -3,8 +3,14 @@ import axios from "axios";
 
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const LOAD_FROM_USER = "LOAD_FROM_USER";
 
-const _addToCart = (product, qty, user) => ({
+const _loadFromUser = (cart) => ({
+  type: LOAD_FROM_USER,
+  cart,
+});
+
+const _addToCart = (product, qty) => ({
   type: ADD_TO_CART,
   product: {
     id: product.id,
@@ -13,7 +19,6 @@ const _addToCart = (product, qty, user) => ({
     price: product.price,
     inventory: product.inventory,
     qty,
-    user,
   },
 });
 
@@ -22,17 +27,39 @@ const _removeFromCart = (id) => ({
   id,
 });
 
+export const loadFromUser = () => {
+  return async (dispatch, getState) => {
+    const user = getState().auth.id;
+    const token = localStorage.getItem("token");
+    const { data } = await axios.get("/api/cart", {
+      headers: {
+        user,
+        authorization: token,
+      },
+    });
+
+    console.log(data);
+
+    dispatch(_loadFromUser(data));
+  };
+};
+
 export const addToCart = (product, qty) => {
   return async (dispatch, getState) => {
     if (getState().auth.id > 0) {
-      const { data } = await axios.post("/api/cart/", product, {
-        headers: {
-          user: getState().auth.id,
-        },
-      });
+      const user = getState().auth.id;
+
+      const { data } = await axios.post(
+        "/api/cart/",
+        { product, qty },
+        {
+          headers: {
+            user,
+          },
+        }
+      );
 
       dispatch(_addToCart(data.product, qty));
-      localStorage.setItem("cart", JSON.stringify(data.cart));
     } else {
       const { data } = await axios.get(`/api/products/${product.id}`);
 
@@ -45,13 +72,12 @@ export const addToCart = (product, qty) => {
 export const removeFromCart = (id) => {
   return async (dispatch, getState) => {
     if (getState().auth.id > 0) {
-      const { data } = await axios.delete(`/api/cart/${id}`, {
+      await axios.delete(`/api/cart/${id}`, {
         headers: {
           user: getState().auth.id,
         },
       });
       dispatch(_removeFromCart(id));
-      localStorage.setItem("cart", JSON.stringify(data.cart));
     } else {
       dispatch(_removeFromCart(id));
 
@@ -61,7 +87,7 @@ export const removeFromCart = (id) => {
 };
 
 const cartLocalStorage =
-  localStorage.getItem("cart") !== "undefined"
+  localStorage.getItem("cart") && localStorage.getItem("cart") !== "undefined"
     ? JSON.parse(localStorage.getItem("cart"))
     : [];
 
@@ -82,6 +108,9 @@ export const cartReducer = (state = initialState, action) => {
 
     case REMOVE_FROM_CART:
       return state.filter((item) => item.id !== action.id);
+
+    case LOAD_FROM_USER:
+      return action.cart;
     default:
       return state;
   }

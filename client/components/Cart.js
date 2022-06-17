@@ -1,14 +1,20 @@
 import React from "react";
 import CartItem from "./CartItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart, removeFromCart } from "../store/cart";
+import { addToCart, removeFromCart, loadFromUser } from "../store/cart";
 
 const Cart = () => {
   const dispatch = useDispatch();
-
   const cart = useSelector((state) => state.cart);
+  const isLoggedIn = useSelector((state) => !!state.auth.id);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(loadFromUser());
+    }
+  }, [isLoggedIn]);
 
   const handleQtyChange = (product, qty) => {
     dispatch(addToCart(product, qty));

@@ -42,7 +42,7 @@ async function seed() {
 
   users.forEach(async (user) => {
     await user.createOrder({
-      status: "Purchased",
+      status: "Pending",
     });
   });
 
