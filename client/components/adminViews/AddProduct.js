@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../store/allProducts";
+import { addProduct } from "../../store/allProducts";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
@@ -35,53 +35,23 @@ export const AddProduct = () => {
     >
       <label>
         Name:
-        <input
-          name="name"
-          type="text"
-          placeholder="Name"
-          value={values.name}
-          onChange={handleChange}
-        />
+        <input name="name" type="text" placeholder="Name" value={values.name} onChange={handleChange} />
       </label>
       <label>
         Price:
-        <input
-          name="price"
-          type="number"
-          placeholder="Price"
-          value={values.price}
-          onChange={handleChange}
-        />
+        <input name="price" type="number" placeholder="Price" value={values.price} onChange={handleChange} />
       </label>
       <label>
         Inventory:
-        <input
-          name="inventory"
-          type="number"
-          placeholder="Inventory"
-          value={values.inventory}
-          onChange={handleChange}
-        />
+        <input name="inventory" type="number" placeholder="Inventory" value={values.inventory} onChange={handleChange} />
       </label>
       <label>
         Description:
-        <input
-          name="description"
-          type="text"
-          placeholder="Description"
-          value={values.description}
-          onChange={handleChange}
-        />
+        <input name="description" type="text" placeholder="Description" value={values.description} onChange={handleChange} />
       </label>
       <label>
         Image URL:
-        <input
-          name="imageURL"
-          type="text"
-          placeholder="Image URL"
-          value={values.imageURL}
-          onChange={handleChange}
-        />
+        <input name="imageURL" type="text" placeholder="Image URL" value={values.imageURL} onChange={handleChange} />
       </label>
       <p></p>
       <Button variant="contained" color="primary" type="submit">

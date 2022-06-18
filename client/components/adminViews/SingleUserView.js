@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUser } from '../../store/admin/singleUser';
-import { Modal, Typography, Box, Button, makeStyles } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../store/admin/singleUser";
+import { Modal, Typography, Box, Button, makeStyles } from "@material-ui/core";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -20,10 +20,10 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -41,12 +41,12 @@ const SingleUserView = ({ user }) => {
     setOpen(false);
   };
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    // const { id } = props.match.params;
-    dispatch(fetchUser(user.id));
-  }, [user]);
+  // useEffect(() => {
+  //   // const { id } = props.match.params;
+  //   dispatch(fetchUser(user.id));
+  // }, [user]);
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -60,8 +60,8 @@ const SingleUserView = ({ user }) => {
     <>
       <Box padding={1} bgcolor="aliceBlue">
         <Button onClick={handleOpen}>{user.username}</Button>
-        <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Box sx={{ position: 'absolute', border: '2px solid #000' }}>{body}</Box>
+        <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Box sx={{ position: "absolute", border: "2px solid #000" }}>{body}</Box>
         </Modal>
       </Box>
     </>
