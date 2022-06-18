@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-const FETCH_PRODUCTS = "FETCH_PRODUCTS";
-const ADD_PRODUCT = "ADD_PRODUCT";
-const EDIT_PRODUCT = "EDIT_PRODUCT";
-const DELETE_PRODUCT = "DELETE_PRODUCT";
+const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+const ADD_PRODUCT = 'ADD_PRODUCT';
+const EDIT_PRODUCT = 'EDIT_PRODUCT';
+const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 const _fetchProducts = (products) => ({
   type: FETCH_PRODUCTS,
@@ -28,7 +28,7 @@ const _deleteProduct = (product) => ({
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/products");
+      const { data } = await axios.get('/api/products');
       dispatch(_fetchProducts(data));
     } catch (err) {
       console.error(err);
@@ -39,7 +39,7 @@ export const fetchProducts = () => {
 export const addProduct = (product) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/products", product);
+      const { data } = await axios.post('/api/products', product);
       dispatch(_addProduct(data));
     } catch (err) {
       console.error(err);
@@ -49,10 +49,7 @@ export const addProduct = (product) => {
 
 export const editProduct = (product) => {
   return async (dispatch) => {
-    const { data: updated } = await axios.put(
-      `/api/products/${product.id}`,
-      product
-    );
+    const { data: updated } = await axios.put(`/api/products/${product.id}`, product);
     dispatch(_editProduct(updated));
   };
 };

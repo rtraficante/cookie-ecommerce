@@ -7,6 +7,8 @@ import AddProduct from './components/AddProduct';
 import UpdateProduct from './components/UpdateProduct';
 import SingleProduct from './components/SingleProduct';
 import AdminOverview from './components/adminViews/AdminOverview';
+import AllUsersView from './components/adminViews/AllUsersView';
+import SingleUserView from './components/adminViews/SingleUserView';
 import { me } from './store';
 import { Login } from './components/LoginForm';
 import { Signup } from './components/SignUpForm';
@@ -24,9 +26,6 @@ class Routes extends Component {
 
   render() {
     const { isLoggedIn, isAdmin } = this.props;
-
-    console.log('inside render: Logged in status:', isLoggedIn);
-    console.log('inside render: Admin status: ', isAdmin);
 
     return (
       <div>
@@ -63,6 +62,10 @@ class Routes extends Component {
           <Route exact path="/admin">
             {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
           </Route>
+          <Route exact path="/admin/users">
+            {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
+          </Route>
+          <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
           <Route exact path="/admin/products/add" component={AddProduct} />
           <Route path="/admin/products/:id/update" component={UpdateProduct} />
         </Switch>
