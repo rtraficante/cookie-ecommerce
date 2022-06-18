@@ -13,14 +13,16 @@ function AllProducts() {
   }, []);
 
   return (
-    <div>
+    <div className="all-products">
       {products.map((product) => (
-        <Link to={`/products/${product.id}`} key={product.id}>
-          <img src={product.imageURL} alt="image of cookie" />
-          <h4>{product.name}</h4>
-          <p>{product.price}</p>
-          <button>Add To Cart</button>
-        </Link>
+        <div key={product.id}>
+          <Link to={`/products/${product.id}`}>
+            <img src={product.imageURL} alt="image of cookie" />
+            <h4>{product.name}</h4>
+            <p>{product.price}</p>
+            <button>Add To Cart</button>
+          </Link>
+        </div>
       ))}
     </div>
   );
