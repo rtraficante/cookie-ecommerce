@@ -1,17 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Home from './components/Home';
-import AllProducts from './components/AllProducts';
-import AddProduct from './components/AddProduct';
-import UpdateProduct from './components/UpdateProduct';
-import SingleProduct from './components/SingleProduct';
-import AdminOverview from './components/adminViews/AdminOverview';
-import AllUsersView from './components/adminViews/AllUsersView';
-import SingleUserView from './components/adminViews/SingleUserView';
-import { me } from './store';
-import { Login } from './components/LoginForm';
-import { Signup } from './components/SignUpForm';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import Home from "./components/Home";
+import AllProducts from "./components/AllProducts";
+import AddProduct from "./components/adminViews/AddProduct";
+import UpdateProduct from "./components/adminViews/UpdateProduct";
+import SingleProduct from "./components/SingleProduct";
+import AdminOverview from "./components/adminViews/AdminOverview";
+import AllUsersView from "./components/adminViews/AllUsersView";
+import SingleUserView from "./components/adminViews/SingleUserView";
+import { me } from "./store";
+import { Login } from "./components/LoginForm";
+import { Signup } from "./components/SignUpForm";
 
 /**
  * COMPONENT

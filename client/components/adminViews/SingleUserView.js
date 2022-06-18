@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../store/admin/singleUser";
-import { Modal, Typography, Box, Button, makeStyles } from "@material-ui/core";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchUser } from "../../store/admin/singleUser";
+import { Modal, styled, Box, Button, makeStyles } from "@material-ui/core";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -50,7 +50,7 @@ const SingleUserView = ({ user }) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
+      <h2 id="user-modal">Text in a modal</h2>
       <p id="simple-modal-description">whatevers</p>
       <SingleUserView user={user} /> {/* inception */}
     </div>
@@ -58,8 +58,10 @@ const SingleUserView = ({ user }) => {
 
   return (
     <>
-      <Box padding={1} bgcolor="aliceBlue">
-        <Button onClick={handleOpen}>{user.username}</Button>
+      <Box padding={1} bgcolor="aliceBlue" align="center">
+        <Button sx={{ width: "100%" }} variant="contained" color="primary" onClick={handleOpen}>
+          {user.username}
+        </Button>
         <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Box sx={{ position: "absolute", border: "2px solid #000" }}>{body}</Box>
         </Modal>
