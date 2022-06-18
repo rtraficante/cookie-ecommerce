@@ -36,7 +36,7 @@ export const fetchProducts = () => {
   };
 };
 
-export const addProduct = (product) => {
+export const addProduct = (product, history) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post("/api/products", product);
@@ -44,23 +44,26 @@ export const addProduct = (product) => {
     } catch (err) {
       console.error(err);
     }
+    history.push("/admin");
   };
 };
 
-export const editProduct = (product) => {
+export const editProduct = (product, history) => {
   return async (dispatch) => {
     const { data: updated } = await axios.put(
       `/api/products/${product.id}`,
       product
     );
     dispatch(_editProduct(updated));
+    history.push("/admin");
   };
 };
 
-export const deleteProduct = (id) => {
+export const deleteProduct = (id, history) => {
   return async (dispatch) => {
     const { data: product } = await axios.delete(`/api/products/${id}`);
     dispatch(_deleteProduct(product));
+    history.push("/admin");
   };
 };
 

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../store/allProducts";
 import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 export const AddProduct = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [values, setValues] = useState({
     name: "",
@@ -28,7 +30,7 @@ export const AddProduct = () => {
       onSubmit={(event) => {
         event.preventDefault();
         if (values.imageURL === "") values.imageURL = undefined;
-        dispatch(addProduct(values));
+        dispatch(addProduct(values, history));
       }}
     >
       <label>
