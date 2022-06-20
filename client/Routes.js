@@ -1,18 +1,18 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Home from './components/Home';
-import AllProducts from './components/AllProducts';
-import AddProduct from './components/AddProduct';
-import UpdateProduct from './components/UpdateProduct';
-import SingleProduct from './components/SingleProduct';
-import AdminOverview from './components/adminViews/AdminOverview';
-import AllUsersView from './components/adminViews/AllUsersView';
-import SingleUserView from './components/adminViews/SingleUserView';
-import { me } from './store';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import Home from "./components/Home";
+import AllProducts from "./components/AllProducts";
+import AddProduct from "./components/adminViews/AddProduct";
+import UpdateProduct from "./components/adminViews/UpdateProduct";
+import SingleProduct from "./components/SingleProduct";
+import AdminOverview from "./components/adminViews/AdminOverview";
+import AllUsersView from "./components/adminViews/AllUsersView";
+import SingleUserView from "./components/adminViews/SingleUserView";
+import { me } from "./store";
 import Cart from "./components/Cart";
-import { Login } from './components/LoginForm';
-import { Signup } from './components/SignUpForm';
+import { Login } from "./components/LoginForm";
+import { Signup } from "./components/SignUpForm";
 
 /**
  * COMPONENT
@@ -30,7 +30,6 @@ class Routes extends Component {
 
     return (
       <div>
-
         <Switch>
           <Route exact path="/">
             {isLoggedIn ? <Redirect to="/home" /> : <Login />}
@@ -62,18 +61,19 @@ class Routes extends Component {
           <Route exact path="/products" component={AllProducts} />
           <Route exact path="/products/:id" component={SingleProduct} />
           <Route exact path="/cart" component={Cart} />
-          
+
           <Route exact path="/admin">
             {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
           </Route>
           <Route exact path="/admin/users">
             {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
           </Route>
-          <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
+          <Route path="/admin/users/:id">
+            {isAdmin ? <SingleUserView /> : <Redirect to="/home" />}
+          </Route>
           <Route exact path="/admin/products/add" component={AddProduct} />
           <Route path="/admin/products/:id/update" component={UpdateProduct} />
         </Switch>
-
       </div>
     );
   }
