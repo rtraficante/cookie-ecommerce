@@ -36,12 +36,7 @@ const UpdateProduct = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(
-      editProduct(
-        { ...product, name, price, inventory, description, imageURL },
-        history
-      )
-    );
+    dispatch(editProduct({ ...product, name, price, inventory, description, imageURL }, history));
   };
 
   return (
@@ -49,53 +44,23 @@ const UpdateProduct = () => {
       <form id="edit-product-form" onSubmit={handleSubmit}>
         <label>
           Name:
-          <input
-            name="name"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <input name="name" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
         <label>
           Price:
-          <input
-            name="price"
-            type="number"
-            placeholder="Price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
+          <input name="price" type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
         </label>
         <label>
           Inventory:
-          <input
-            name="inventory"
-            type="number"
-            placeholder="Inventory"
-            value={inventory}
-            onChange={(e) => setInventory(e.target.value)}
-          />
+          <input name="inventory" type="number" placeholder="Inventory" value={inventory} onChange={(e) => setInventory(e.target.value)} />
         </label>
         <label>
           Description:
-          <input
-            name="description"
-            type="text"
-            placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+          <input name="description" type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
         </label>
         <label>
           Image URL:
-          <input
-            name="imageURL"
-            type="text"
-            placeholder="Image URL"
-            value={imageURL}
-            onChange={(e) => setImageURL(e.target.value)}
-          />
+          <input name="imageURL" type="text" placeholder="Image URL" value={imageURL} onChange={(e) => setImageURL(e.target.value)} />
         </label>
         <button type="submit">Submit</button>
       </form>

@@ -29,18 +29,14 @@ class Routes extends Component {
     const { isLoggedIn, isAdmin } = this.props;
 
     return (
-      <div>
-        <Switch>
-          <Route exact path="/">
-            {isLoggedIn ? <Redirect to="/home" /> : <Login />}
-          </Route>
-          <Route exact path="/home">
-            {isLoggedIn ? (
-              <>
-                <Home />
-                <AllProducts />
-              </>
-            ) : (
+      <Switch>
+        <Route exact path="/">
+          {isLoggedIn ? <Redirect to="/home" /> : <Login />}
+        </Route>
+        <Route exact path="/home">
+          {isLoggedIn ? (
+            <>
+              <Home />
               <AllProducts />
             )}
           </Route>
@@ -75,6 +71,7 @@ class Routes extends Component {
           <Route path="/admin/products/:id/update" component={UpdateProduct} />
         </Switch>
       </div>
+
     );
   }
 }
