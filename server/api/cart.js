@@ -107,10 +107,12 @@ router.put("/:id", async (req, res) => {
     });
 
     await cartItem.update({
-      qty: req.body,
+      qty: req.body.qty,
     });
 
-    res.send(pendingOrder);
+    const product = await Product.findByPk(req.params.id);
+
+    res.send({ product, cart: pendingOrder });
   } catch (err) {
     console.error(err);
   }

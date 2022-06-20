@@ -38,28 +38,46 @@ export const loadFromUser = () => {
       },
     });
 
-    console.log(data);
-
     dispatch(_loadFromUser(data));
   };
 };
 
 export const addToCart = (product, qty) => {
   return async (dispatch, getState) => {
-    if (getState().auth.id > 0) {
+    if (getState().auth.id) {
       const user = getState().auth.id;
+      const token = localStorage.getItem("token");
+      const cart = await axios.get("/api/cart", {
+        headers: {
+          user,
+          authorization: token,
+        },
+      });
 
-      const { data } = await axios.post(
-        "/api/cart/",
-        { product, qty },
-        {
-          headers: {
-            user,
-          },
-        }
-      );
+      let res;
+      if (cart.data.length === 0) {
+        res = await axios.post(
+          "/api/cart/",
+          { product, qty },
+          {
+            headers: {
+              user,
+            },
+          }
+        );
+      } else {
+        res = await axios.put(
+          `/api/cart/${product.id}`,
+          { product, qty },
+          {
+            headers: {
+              user,
+            },
+          }
+        );
+      }
 
-      dispatch(_addToCart(data.product, qty));
+      dispatch(_addToCart(res.data.product, qty));
     } else {
       const { data } = await axios.get(`/api/products/${product.id}`);
 
