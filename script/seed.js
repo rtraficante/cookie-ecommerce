@@ -2,20 +2,21 @@
 
 const {
   db,
-  models: { User, Product },
-} = require('../server/db');
+  models: { User, Product, Order },
+} = require("../server/db");
 
 const monster = {
   name: 'Monster Cookie',
   description: 'cool cookie scary monster fun',
   price: 39.99,
   inventory: 364,
-  imageURL: 'https://sallysbakingaddiction.com/wp-content/uploads/2013/06/one-big-monster-cookie.jpg',
+  imageURL:
+    "https://sallysbakingaddiction.com/wp-content/uploads/2013/06/one-big-monster-cookie.jpg",
 };
 
 const sugar = {
-  name: 'Sugar Cookie',
-  description: 'very sweet cookie much delicious',
+  name: "Sugar Cookie",
+  description: "very sweet cookie much delicious",
   price: 12.98,
   inventory: 2,
 };
