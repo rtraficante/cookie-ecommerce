@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchUser } from "../../store/admin/singleUser";
-import { Modal, styled, Box, Button, makeStyles } from "@material-ui/core";
+import { Modal, Box, Button, makeStyles } from "@material-ui/core";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -34,32 +34,28 @@ const SingleUserView = ({ user }) => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const [singleUser] = useState(user);
 
-  // const dispatch = useDispatch();
+  const handleOpen = () => setOpen(true);
 
-  // useEffect(() => {
-  //   // const { id } = props.match.params;
-  //   dispatch(fetchUser(user.id));
-  // }, [user]);
+  const handleClose = () => setOpen(false);
 
   const body = (
-    <div style={modalStyle} className={classes.paper}>
-      <h2 id="user-modal">Text in a modal</h2>
-      <p id="simple-modal-description">whatevers</p>
-      <SingleUserView user={user} /> {/* inception */}
+    <div style={modalStyle} variant="button" className={classes.paper}>
+      <h2 id="user-modal" align="center">
+        {user.username}
+      </h2>
+      <p id="simple-modal-description" align="center">
+        {user.firstName} {user.lastName}
+      </p>
+      <SingleUserView user={user} />
     </div>
   );
 
   return (
     <>
       <Box padding={1} bgcolor="aliceBlue" align="center">
-        <Button sx={{ width: "100%" }} variant="contained" color="primary" onClick={handleOpen}>
+        <Button variant="contained" color="primary" onClick={handleOpen}>
           {user.username}
         </Button>
         <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
