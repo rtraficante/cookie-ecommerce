@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editProduct, deleteProduct } from "../store/allProducts";
-import { fetchProduct } from "../store/singleProduct";
+import { editProduct, deleteProduct } from "../../store/allProducts";
+import { fetchProduct } from "../../store/singleProduct";
 import { useHistory, useParams } from "react-router-dom";
 
 const UpdateProduct = () => {
