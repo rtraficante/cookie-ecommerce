@@ -10,6 +10,7 @@ import AdminOverview from "./components/adminViews/AdminOverview";
 import AllUsersView from "./components/adminViews/AllUsersView";
 import SingleUserView from "./components/adminViews/SingleUserView";
 import { me } from "./store";
+import Cart from "./components/Cart";
 import { Login } from "./components/LoginForm";
 import { Signup } from "./components/SignUpForm";
 
@@ -37,37 +38,40 @@ class Routes extends Component {
             <>
               <Home />
               <AllProducts />
-            </>
-          ) : (
-            <AllProducts />
-          )}
-        </Route>
-        <Route exact path="/login">
-          {isLoggedIn ? (
-            <Redirect to="/home" />
-          ) : (
-            <>
-              <p>Log yo'self in!</p>
-              <Login />
-              <p>OR</p>
-              <p>Join us to satisfy your sweet tooth!</p>
-              <Signup />
-            </>
-          )}
-        </Route>
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/products/:id" component={SingleProduct} />
-        <Route exact path="/admin">
-          {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
-        </Route>
-        <Route exact path="/admin/users">
-          {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
-        </Route>
-        <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
-        <Route exact path="/admin/products/add" component={AddProduct} />
-        <Route path="/admin/products/:id/update" component={UpdateProduct} />
-      </Switch>
+            )}
+          </Route>
+          <Route exact path="/login">
+            {isLoggedIn ? (
+              <Redirect to="/home" />
+            ) : (
+              <>
+                <p>Log yo'self in!</p>
+                <Login />
+                <p>OR</p>
+                <p>Join us to satisfy your sweet tooth!</p>
+                <Signup />
+              </>
+            )}
+          </Route>
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/products/:id" component={SingleProduct} />
+          <Route exact path="/cart" component={Cart} />
+
+          <Route exact path="/admin">
+            {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/admin/users">
+            {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
+          </Route>
+          <Route path="/admin/users/:id">
+            {isAdmin ? <SingleUserView /> : <Redirect to="/home" />}
+          </Route>
+          <Route exact path="/admin/products/add" component={AddProduct} />
+          <Route path="/admin/products/:id/update" component={UpdateProduct} />
+        </Switch>
+      </div>
+
     );
   }
 }

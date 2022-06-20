@@ -41,6 +41,7 @@ export const addProduct = (product, history) => {
     try {
       const { data } = await axios.post("/api/products", product);
       dispatch(_addProduct(data));
+
     } catch (err) {
       console.error(err);
     }
