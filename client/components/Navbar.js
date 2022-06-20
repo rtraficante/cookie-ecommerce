@@ -17,9 +17,14 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
   const classes = useNavStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
-          <DropDownMenu handleClick={handleClick} isLoggedIn={isLoggedIn} isAdmin={isAdmin} classes={classes} />
+          <DropDownMenu
+            handleClick={handleClick}
+            isLoggedIn={isLoggedIn}
+            isAdmin={isAdmin}
+            classes={classes}
+          />
           <Typography className={classes.title} variant="h6" noWrap>
             GS-TEAM-Q
           </Typography>
