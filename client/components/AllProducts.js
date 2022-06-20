@@ -19,15 +19,17 @@ function AllProducts(props) {
   };
 
   return (
-    <div>
+    <div className="all-products">
       {products.map((product) => (
         <div key={product.id}>
           <Link to={`/products/${product.id}`}>
             <img src={product.imageURL} alt="image of cookie" />
             <h4>{product.name}</h4>
             <p>{product.price}</p>
+
           </Link>
           <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
+
         </div>
       ))}
     </div>

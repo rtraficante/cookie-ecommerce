@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const {
   db,
@@ -6,8 +6,8 @@ const {
 } = require("../server/db");
 
 const monster = {
-  name: "Monster Cookie",
-  description: "cool cookie scary monster fun",
+  name: 'Monster Cookie',
+  description: 'cool cookie scary monster fun',
   price: 39.99,
   inventory: 364,
   imageURL:
@@ -28,28 +28,29 @@ const sugar = {
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log("db synced!");
+  console.log('db synced!');
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ email: "cody@gmail.com", username: "cody", password: "123" }),
+    User.create({ email: 'cody@gmail.com', username: 'cody', password: '123', firstName: 'cody', lastName: 'cafe' }),
     User.create({
-      email: "murphy@gmail.com",
-      username: "murphy",
-      password: "123",
+      email: 'murphy@gmail.com',
+      username: 'murphy',
+      password: '123',
+      firstName: 'murphy',
+      lastName: 'detective',
+    }),
+    User.create({
+      email: 'ed@fake.com',
+      username: 'edTheAdmin',
+      password: '123',
+      isAdmin: true,
+      firstName: 'ed',
+      lastName: 'admin',
     }),
   ]);
 
-  users.forEach(async (user) => {
-    await user.createOrder({
-      status: "Pending",
-    });
-  });
-
-  const products = await Promise.all([
-    Product.create(monster),
-    Product.create(sugar),
-  ]);
+  const products = await Promise.all([Product.create(monster), Product.create(sugar)]);
 
   console.log(`seeded ${users.length} users and ${products.length} products`);
   console.log(`seeded successfully`);
@@ -67,16 +68,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log("seeding...");
+  console.log('seeding...');
   try {
     await seed();
   } catch (err) {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log("closing db connection");
+    console.log('closing db connection');
     await db.close();
-    console.log("db connection closed");
+    console.log('db connection closed');
   }
 }
 
