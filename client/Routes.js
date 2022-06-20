@@ -10,6 +10,7 @@ import AdminOverview from './components/adminViews/AdminOverview';
 import AllUsersView from './components/adminViews/AllUsersView';
 import SingleUserView from './components/adminViews/SingleUserView';
 import { me } from './store';
+import Cart from "./components/Cart";
 import { Login } from './components/LoginForm';
 import { Signup } from './components/SignUpForm';
 
@@ -29,6 +30,7 @@ class Routes extends Component {
 
     return (
       <div>
+
         <Switch>
           <Route exact path="/">
             {isLoggedIn ? <Redirect to="/home" /> : <Login />}
@@ -59,6 +61,8 @@ class Routes extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/products" component={AllProducts} />
           <Route exact path="/products/:id" component={SingleProduct} />
+          <Route exact path="/cart" component={Cart} />
+          
           <Route exact path="/admin">
             {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
           </Route>
@@ -69,6 +73,7 @@ class Routes extends Component {
           <Route exact path="/admin/products/add" component={AddProduct} />
           <Route path="/admin/products/:id/update" component={UpdateProduct} />
         </Switch>
+
       </div>
     );
   }
