@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Monster",
+    "description": "cool cookie scary monster fun",
+    "price": 4.25,
+    "inventory": 364,
+    "category": "chocolate",
+    "imageURL": "https://sallysbakingaddiction.com/wp-content/uploads/2013/06/one-big-monster-cookie.jpg"
+  },
+  {
+    "name": "Sugar",
+    "description": "very sweet cookie much delicious",
+    "price": 3.5,
+    "category": "nut-free",
+    "inventory": 2,
+    "imageURL": "https://www.foodservicedirect.com/media/catalog/product/1/4/149115.jpg?width=1200&height=1200&canvas=1200,1200&quality=75&fit=bounds"
+  },
+  {
+    "name": "Frosted Sugar",
+    "description": "Extra sweet cookie with yummy frosting!",
+    "price": 4.0,
+    "category": "nut-free",
+    "inventory": 100,
+    "imageURL": "https://thecafesucrefarine.com/wp-content/uploads/Copycat-Crumbl-Sugar-Cookies-17.jpg"
+  },
+  {
+    "name": "Chocolate Chip",
+    "description": "Classic favorite! Never fails to satisfy",
+    "price": 4.25,
+    "category": "chocolate",
+    "inventory": 250,
+    "imageURL": "https://thebigmansworld.com/wp-content/uploads/2020/10/chocolate-chip-cookie-for-one-5.jpg"
+  },
+  {
+    "name": "Double Chocolate Chip",
+    "description": "EXTRA Chocolatey flavor!!! Doubly guaranteed to satisfy!",
+    "price": 5.25,
+    "category": "chocolate",
+    "inventory": 250,
+    "imageURL": "https://cdn.shopify.com/s/files/1/0413/6072/0036/products/Double_Chocolate_Chunk_1080x.jpg?v=1623193247"
+  },
+  {
+    "name": "Oatmeal Raisin",
+    "description": "These are definitely not chocolate chips, but they are still delicious!!",
+    "price": 4.25,
+    "category": "nut-free",
+    "inventory": 250,
+    "imageURL": "https://www.modernhoney.com/wp-content/uploads/2017/01/Oatmeal-Raisin-Cookies-copy.jpg"
+  },
+  {
+    "name": "Molasses",
+    "description": "Just like Grandma makes them!",
+    "price": 4.0,
+    "category": "nut-free",
+    "inventory": 250,
+    "imageURL": "https://alwayseatdessert.com/wp-content/uploads/2015/12/Molasses-Cookies-10.jpg"
+  },
+  {
+    "name": "Peanut Butter",
+    "description": "A classic, no frills cookie!",
+    "price": 4.0,
+    "category": "sweet",
+    "inventory": 150,
+    "imageURL": "https://www.yourhomebasedmom.com/wp-content/uploads/2021/08/giant-peanut-butter-cookie-0017.jpg"
+  },
+  {
+    "name": "Lemon",
+    "description": "A sweet and tangy treat, sure to be a hit with your sweet tooth!",
+    "price": 4.5,
+    "category": "sweet",
+    "inventory": 200,
+    "imageURL": "https://www.nospoonnecessary.com/wp-content/uploads/2020/08/Lemon-Crinkle-Cookies-Cake-Box-Mix-42.jpg"
+  },
+  {
+    "name": "Strawberry White Chocolate",
+    "description": "A delightful treat with strawberries, white chocolate, and macadamia nuts!",
+    "price": 5.0,
+    "category": "sweet",
+    "inventory": 50,
+    "imageURL": "https://pinchofyum.com/wp-content/uploads/Strawberry-White-Chocolate-Cookies-3-1365x2048.jpg"
+  },
+  {
+    "name": "Vegan Chocolate Chip",
+    "description": "A vegan take on a classic recipe! Delightful to bite into!",
+    "price": 5.0,
+    "category": "vegan",
+    "inventory": 100,
+    "imageURL": "https://cdn.loveandlemons.com/wp-content/uploads/2021/11/vegan-cookie-recipes.jpg"
+  },
+  {
+    "name": "Vegan Spice",
+    "description": "A vegan take on the classic spiced cookie recipe! Great for holiday gatherings!",
+    "price": 5.25,
+    "category": "vegan",
+    "inventory": 100,
+    "imageURL": "https://cdn.loveandlemons.com/wp-content/uploads/2020/11/molasses-cookies-1.jpg"
+  },
+  {
+    "name": "Vegan Gingerbread",
+    "description": "A vegan gingerbread cookie recipe! Have fun playing out classic Shrek scenes! Great for holiday gatherings!",
+    "price": 5.25,
+    "category": "vegan",
+    "inventory": 100,
+    "imageURL": "https://cdn.loveandlemons.com/wp-content/uploads/2016/12/IMG_2016_12_18_09186-cropped3.jpg"
+  },
+  {
+    "name": "Tahini Miso",
+    "description": "This cookie is sure to tickle your savory taste buds! A vegan cookie recipe including tahini and miso!",
+    "price": 5.5,
+    "category": "vegan",
+    "inventory": 100,
+    "imageURL": "https://images.squarespace-cdn.com/content/v1/5ebed1be24e45c6af2cfc241/1593919770475-XLTC6DLZDTBRVV39XLGX/misotahinicookies.jpg?format=2500w"
+  },
+  {
+    "name": "Blueberry Cheesecake",
+    "description": "This is too delicious to turn down! Get yourself one today!",
+    "price": 5.5,
+    "category": "sweet",
+    "inventory": 100,
+    "imageURL": "https://crumbl.video/cdn-cgi/image/width=3840,quality=80/https://crumbl.video/a07aede6-8a0a-4dc3-9d7e-3b852725fadf_BlueberryCheesecake_Aerial_Crumb_Tech.png"
+  },
+  {
+    "name": "Rocky Road",
+    "description": "(we don't actually sell these, sorry but they do look delicious! )",
+    "price": 5.5,
+    "category": "sweet",
+    "inventory": 0,
+    "imageURL": "https://crumbl.video/cdn-cgi/image/width=3840,quality=80/https://crumbl.video/b312177b-19b9-4008-829a-5f7efe39fb5a_RockyRoad_Aerial_Crum_Tech.png"
+  }
+]
