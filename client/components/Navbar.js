@@ -17,7 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
   const classes = useNavStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="sticky">
+      <AppBar position="fixed">
         <Toolbar>
           <DropDownMenu
             handleClick={handleClick}
