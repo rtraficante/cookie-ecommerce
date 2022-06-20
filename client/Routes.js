@@ -29,52 +29,50 @@ class Routes extends Component {
     const { isLoggedIn, isAdmin } = this.props;
 
     return (
-      <div>
-        <Switch>
-          <Route exact path="/">
-            {isLoggedIn ? <Redirect to="/home" /> : <Login />}
-          </Route>
-          <Route exact path="/home">
-            {isLoggedIn ? (
-              <>
-                <Home />
-                <AllProducts />
-              </>
-            ) : (
+      <Switch>
+        <Route exact path="/">
+          {isLoggedIn ? <Redirect to="/home" /> : <Login />}
+        </Route>
+        <Route exact path="/home">
+          {isLoggedIn ? (
+            <>
+              <Home />
               <AllProducts />
-            )}
-          </Route>
-          <Route exact path="/login">
-            {isLoggedIn ? (
-              <Redirect to="/home" />
-            ) : (
-              <>
-                <p>Log yo'self in!</p>
-                <Login />
-                <p>OR</p>
-                <p>Join us to satisfy your sweet tooth!</p>
-                <Signup />
-              </>
-            )}
-          </Route>
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/products" component={AllProducts} />
-          <Route exact path="/products/:id" component={SingleProduct} />
-          <Route exact path="/cart" component={Cart} />
+            </>
+          ) : (
+            <>
+              <AllProducts />
+            </>
+          )}
+        </Route>
+        <Route exact path="/login">
+          {isLoggedIn ? (
+            <Redirect to="/home" />
+          ) : (
+            <>
+              <p>Log yo'self in!</p>
+              <Login />
+              <p>OR</p>
+              <p>Join us to satisfy your sweet tooth!</p>
+              <Signup />
+            </>
+          )}
+        </Route>
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/products/:id" component={SingleProduct} />
+        <Route exact path="/cart" component={Cart} />
 
-          <Route exact path="/admin">
-            {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
-          </Route>
-          <Route exact path="/admin/users">
-            {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
-          </Route>
-          <Route path="/admin/users/:id">
-            {isAdmin ? <SingleUserView /> : <Redirect to="/home" />}
-          </Route>
-          <Route exact path="/admin/products/add" component={AddProduct} />
-          <Route path="/admin/products/:id/update" component={UpdateProduct} />
-        </Switch>
-      </div>
+        <Route exact path="/admin">
+          {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
+        </Route>
+        <Route exact path="/admin/users">
+          {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
+        </Route>
+        <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
+        <Route exact path="/admin/products/add" component={AddProduct} />
+        <Route path="/admin/products/:id/update" component={UpdateProduct} />
+      </Switch>
     );
   }
 }
