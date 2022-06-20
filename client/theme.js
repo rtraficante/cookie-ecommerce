@@ -28,11 +28,12 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#a05050",
+      // main: deepPurple[700],
     },
 
     secondary: {
       main: "#000000",
-      // contrastText: amber[900],
+      contrastText: amber[900],
     },
   },
 });
