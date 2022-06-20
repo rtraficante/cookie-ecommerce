@@ -10,16 +10,18 @@ const _checkout = (cart) => ({
 export const checkout = (cart) => {
   return async (dispatch, getState) => {
     const user = getState().auth.id;
-
     const { data } = await axios.post("/api/checkout", cart, {
       headers: {
         user,
       },
     });
+    dispatch(_checkout(data));
   };
 };
 
-const checkoutReducer = (state = initalState, action) => {
+const initalState = [];
+
+export const checkoutReducer = (state = initalState, action) => {
   switch (action.type) {
     case CHECKOUT:
       return [];

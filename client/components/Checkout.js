@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CheckoutItem from "./CheckoutItem";
 import { loadFromUser } from "../store/cart";
+import { checkout } from "../store/checkout";
+import { useHistory } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -12,6 +14,7 @@ import {
 } from "@material-ui/core";
 
 const Checkout = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const isLoggedIn = useSelector((state) => !!state.auth.id);
@@ -37,7 +40,8 @@ const Checkout = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // handle submit from redux
+    dispatch(checkout(cart));
+    history.push("/home");
   };
 
   return (
@@ -53,7 +57,7 @@ const Checkout = () => {
           )}
         </Grid>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <FormControl>
             <InputLabel htmlFor="name">Name</InputLabel>
             <Input

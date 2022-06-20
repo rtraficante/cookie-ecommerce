@@ -10,10 +10,10 @@ const CheckoutItem = (props) => {
       <img src={product.imageURL} alt="image of cookie" />
       <div className="checkout-details">
         <Typography variant="h5">{product.name}</Typography>
-        <Typography variant="body">
+        <Typography variant="body1">
           Price: ${product.price} x {product.qty}
         </Typography>
-        <Typography variant="body">
+        <Typography variant="body1">
           Total: ${product.price * product.qty}
         </Typography>
       </div>

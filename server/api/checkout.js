@@ -5,8 +5,8 @@ const {
 
 router.post("/", async (req, res) => {
   try {
-    const user = await User.findByPk(req.header.user, {
-      include: [{ Model: Order }],
+    const user = await User.findByPk(req.headers.user, {
+      include: [{ model: Order }],
     });
 
     const cart = user.orders.find((order) => order.status === "Pending");
