@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Monster",
+    "description": "cool cookie scary monster fun",
+    "price": 4.25,
+    "inventory": 364,
+    "category": "chocolate",
+    "imageURL": "https://sallysbakingaddiction.com/wp-content/uploads/2013/06/one-big-monster-cookie.jpg"
+  },
+  {
+    "name": "Sugar",
+    "description": "very sweet cookie much delicious",
+    "price": 3.5,
+    "category": "nut-free",
+    "inventory": 2,
+    "imageURL": "https://www.foodservicedirect.com/media/catalog/product/1/4/149115.jpg?width=1200&height=1200&canvas=1200,1200&quality=75&fit=bounds"
+  },
+  {
+    "name": "Frosted Sugar",
+    "description": "Extra sweet cookie with yummy frosting!",
+    "price": 4.0,
+    "category": "nut-free",
+    "inventory": 100,
+    "imageURL": "https://thecafesucrefarine.com/wp-content/uploads/Copycat-Crumbl-Sugar-Cookies-17.jpg"
+  },
+  {
+    "name": "Chocolate Chip",
+    "description": "Classic favorite! Never fails to satisfy",
+    "price": 4.25,
+    "category": "chocolate",
+    "inventory": 250,
+    "imageURL": "https://thebigmansworld.com/wp-content/uploads/2020/10/chocolate-chip-cookie-for-one-5.jpg"
+  },
+  {
+    "name": "Double Chocolate Chip",
+    "description": "EXTRA Chocolatey flavor!!! Doubly guaranteed to satisfy!",
+    "price": 5.25,
+    "category": "chocolate",
+    "inventory": 250,
+    "imageURL": "https://cdn.shopify.com/s/files/1/0413/6072/0036/products/Double_Chocolate_Chunk_1080x.jpg?v=1623193247"
+  },
+  {
+    "name": "Oatmeal Raisin",
+    "description": "These are definitely not chocolate chips, but they are still delicious!!",
+    "price": 4.25,
+    "category": "nut-free",
+    "inventory": 250,
+    "imageURL": "https://www.modernhoney.com/wp-content/uploads/2017/01/Oatmeal-Raisin-Cookies-copy.jpg"
+  },
+  {
+    "name": "Molasses",
+    "description": "Just like Grandma makes them!",
+    "price": 4.0,
+    "category": "nut-free",
+    "inventory": 250,
+    "imageURL": "https://alwayseatdessert.com/wp-content/uploads/2015/12/Molasses-Cookies-10.jpg"
+  },
+  {
+    "name": "Peanut Butter",
+    "description": "A classic, no frills cookie!",
+    "price": 4.0,
+    "category": "sweet",
+    "inventory": 150,
+    "imageURL": "https://www.yourhomebasedmom.com/wp-content/uploads/2021/08/giant-peanut-butter-cookie-0017.jpg"
+  },
+  {
+    "name": "Lemon",
+    "description": "A sweet and tangy treat, sure to be a hit with your sweet tooth!",
+    "price": 4.5,
+    "category": "sweet",
+    "inventory": 200,
+    "imageURL": "https://www.nospoonnecessary.com/wp-content/uploads/2020/08/Lemon-Crinkle-Cookies-Cake-Box-Mix-42.jpg"
+  },
+  {
+    "name": "Strawberry White Chocolate",
+    "description": "A delightful treat with strawberries, white chocolate, and macadamia nuts!",
+    "price": 5.0,
+    "category": "sweet",
+    "inventory": 50,
+    "imageURL": "https://pinchofyum.com/wp-content/uploads/Strawberry-White-Chocolate-Cookies-3-1365x2048.jpg"
+  }
+]
