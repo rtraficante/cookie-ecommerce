@@ -24,3 +24,27 @@ img {
   max-height: 200px;
   max-width: 200px;
 }
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.checkout-item > img {
+  max-width: 100px;
+}
+
+.checkout-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.checkout-products {
+  background-color: aliceblue;
+}

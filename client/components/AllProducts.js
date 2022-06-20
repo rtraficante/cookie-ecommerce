@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { fetchProducts } from "../store/allProducts";
 import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-function AllProducts(props) {
+function AllProducts() {
   const products = useSelector((state) => state.allProducts);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -15,7 +16,7 @@ function AllProducts(props) {
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    props.history.push("/cart");
+    history.push("/cart");
   };
 
   return (
@@ -26,10 +27,8 @@ function AllProducts(props) {
             <img src={product.imageURL} alt="image of cookie" />
             <h4>{product.name}</h4>
             <p>{product.price}</p>
-
           </Link>
           <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
-
         </div>
       ))}
     </div>

@@ -3,7 +3,13 @@ import CartItem from "./CartItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart, removeFromCart, loadFromUser } from "../store/cart";
+import {
+  addToCart,
+  removeFromCart,
+  loadFromUser,
+  editCart,
+} from "../store/cart";
+import { Button } from "@material-ui/core";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -17,7 +23,7 @@ const Cart = () => {
   }, [isLoggedIn]);
 
   const handleQtyChange = (product, qty) => {
-    dispatch(addToCart(product, qty));
+    dispatch(editCart(product, qty));
   };
 
   const handleRemoveFromCart = (id) => {
@@ -25,20 +31,27 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      {cart.length === 0 ? (
-        <div>Your cart is empty</div>
-      ) : (
-        cart.map((item) => (
-          <CartItem
-            key={item.id}
-            product={item}
-            handleQtyChange={handleQtyChange}
-            removeFromCart={handleRemoveFromCart}
-          />
-        ))
-      )}
-    </div>
+    <>
+      <div>
+        {cart.length === 0 ? (
+          <div>Your cart is empty</div>
+        ) : (
+          cart.map((item) => (
+            <CartItem
+              key={item.id}
+              product={item}
+              handleQtyChange={handleQtyChange}
+              removeFromCart={handleRemoveFromCart}
+            />
+          ))
+        )}
+      </div>
+      <div>
+        <Button href="/checkout" variant="contained" color="primary">
+          Proceed To Checkout
+        </Button>
+      </div>
+    </>
   );
 };
 
