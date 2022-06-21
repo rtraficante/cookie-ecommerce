@@ -21,9 +21,6 @@ import UserPage from "./components/users/UserPage";
  * COMPONENT
  */
 class Routes extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   componentDidMount() {
     this.props.loadInitialData();
   }

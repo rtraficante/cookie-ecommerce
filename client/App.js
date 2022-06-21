@@ -8,9 +8,11 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
+
       <div style={{ paddingTop: 70 }}>
         <Routes />
       </div>
+
     </ThemeProvider>
   );
 };

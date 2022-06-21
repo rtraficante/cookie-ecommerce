@@ -11,6 +11,7 @@ export const AddProduct = () => {
   const [values, setValues] = useState({
     name: "",
     price: 0,
+    category: "",
     inventory: 0,
     description: "",
     imageURL: "",
