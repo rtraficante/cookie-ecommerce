@@ -9,23 +9,13 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
 function SingleProductCard({ product }) {
-  // const product = useSelector((state) => state.singleProduct);
   const dispatch = useDispatch();
 
   let [qty, setQty] = useState(1);
 
-  // useEffect(() => {
-  //   const { id } = props.match.params;
-  //   dispatch(fetchProduct(product.id));
-  // }, []);
-
   const handleAddToCart = () => {
     dispatch(addToCart(product, qty));
   };
-
-  // const handleQtyChange = (event) => {
-  //   setQty(event.target.value);
-  // };
 
   const addOne = () => setQty(qty++);
   const minusOne = () => setQty(qty--);
@@ -59,19 +49,3 @@ function SingleProductCard({ product }) {
 }
 
 export default SingleProductCard;
-
-/*
- <>
-      <img className={classes.image} src={imageURL} alt="Image of cookie" />
-      <h4>{name}</h4>
-      <p>{price}</p>
-      <p>Description: {description}</p>
-      <select value={qty} onChange={handleQtyChange}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <button onClick={handleAddToCart}>Add To Cart</button>
-    </>
-*/

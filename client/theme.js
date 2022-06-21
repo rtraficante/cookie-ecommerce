@@ -79,7 +79,7 @@ export const useProductStyles = makeStyles((theme) => ({
     minHeight: 200,
     maxHeight: 400,
     position: "static",
-    // backgroundSize: "contain",
+    backgroundSize: "contain",
   },
   media: {
     display: "flex",
