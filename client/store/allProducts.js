@@ -39,9 +39,10 @@ export const fetchProducts = () => {
 export const addProduct = (product, history) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/products", product);
-      dispatch(_addProduct(data));
-
+      const token = localStorage.getItem("token");
+      console.log(token);
+      const { data: newProduct } = await axios.post("/api/products", { token, product });
+      dispatch(_addProduct(newProduct));
     } catch (err) {
       console.error(err);
     }
@@ -51,10 +52,8 @@ export const addProduct = (product, history) => {
 
 export const editProduct = (product, history) => {
   return async (dispatch) => {
-    const { data: updated } = await axios.put(
-      `/api/products/${product.id}`,
-      product
-    );
+    const token = localStorage.getItem("token");
+    const { data: updated } = await axios.put(`/api/products/${product.id}`, { token, product });
     dispatch(_editProduct(updated));
     history.push("/admin");
   };
@@ -62,7 +61,8 @@ export const editProduct = (product, history) => {
 
 export const deleteProduct = (id, history) => {
   return async (dispatch) => {
-    const { data: product } = await axios.delete(`/api/products/${id}`);
+    const token = localStorage.getItem("token");
+    const { data: product } = await axios.delete(`/api/products/${id}`, { token, product });
     dispatch(_deleteProduct(product));
     history.push("/admin");
   };

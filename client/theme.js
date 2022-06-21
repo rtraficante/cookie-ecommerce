@@ -22,12 +22,20 @@ const theme = createTheme({
             fontSize: 9,
           },
         },
+        {
+          props: {
+            variant: "body1",
+          },
+          style: {
+            fontSize: 25,
+          },
+        },
       ],
     },
   },
   palette: {
     primary: {
-      main: "#a05050",
+      main: "#9D7E67",
       // main: deepPurple[700],
     },
 
@@ -43,11 +51,12 @@ theme.overrides = {
     root: {
       borderRadius: 15,
       textTransform: "none",
+      fontSize: 24,
     },
     containedPrimary: {
       "&:hover": {
         backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.primary.light,
+        color: theme.palette.primary.dark,
       },
     },
     containedSecondary: {
@@ -56,9 +65,42 @@ theme.overrides = {
   },
 };
 
+export const useProductStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    maxHeight: "100%",
+    minHeight: "100%",
+    maxWidth: 500,
+    minWidth: 200,
+  },
+  image: {
+    minWidth: "100%",
+    maxWidth: "100%",
+    minHeight: 200,
+    maxHeight: 400,
+    position: "static",
+    // backgroundSize: "contain",
+  },
+  media: {
+    display: "flex",
+    height: 100,
+    width: 100,
+  },
+  p: {
+    color: "#0288d1",
+    fontSize: 20,
+    fontFamily: "Fascinate",
+  },
+  h4: {
+    color: "#0288d1",
+    fontSize: 20,
+    fontFamily: "Fascinate",
+  },
+}));
+
 export const useNavStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 2,
+    flexGrow: 4,
     marginBottom: 25,
   },
   menuButton: {
