@@ -45,28 +45,16 @@ router.get("/orders", requireToken, async (req, res, next) => {
       where: {
         userId: user.id,
       },
-      include: [
-        {
-          all: true,
-          nested: true,
-        },
-      ],
+      include: {
+        model: Product,
+        attributes: ["id", "price"],
+      },
     });
-    // res.sendStatus(200);
     res.send(orders);
   } catch (err) {
     next(err);
   }
 });
-
-/*
-{
-      where: {
-        userId: user.id,
-      },
-      include: [{ model: Product }],
-    }
-    */
 
 router.post("/", async (req, res) => {
   try {
