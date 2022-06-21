@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { fetchProducts } from "../store/allProducts";
 import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Box, Button, Container, Grid } from "@material-ui/core";
 import { useProductStyles } from "../theme";
-
 import SingleProductCard from "./SingleProductCard";
 
-function AllProducts(props) {
+function AllProducts() {
   const products = useSelector((state) => state.allProducts);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -19,7 +19,7 @@ function AllProducts(props) {
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    props.history.push("/products");
+    history.push("/cart");
   };
 
   const classes = useProductStyles();
