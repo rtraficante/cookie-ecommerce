@@ -19,14 +19,9 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
   const classes = useNavStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="relative">
         <Toolbar>
-          <DropDownMenu
-            handleClick={handleClick}
-            isLoggedIn={isLoggedIn}
-            isAdmin={isAdmin}
-            classes={classes}
-          />
+          <DropDownMenu handleClick={handleClick} isLoggedIn={isLoggedIn} isAdmin={isAdmin} classes={classes} />
           <Typography className={classes.title} variant="h6" noWrap>
             GS-TEAM-Q
           </Typography>
@@ -73,28 +68,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default connect(mapState, mapDispatch)(Navbar);
-
-/*
- <div>
-      <h1>GS-Team-Q</h1>
-      <nav>
-        {isLoggedIn ? (
-          <div>
-            <Link to="/home">Home</Link>
-            <Link to="/products">All Sweet Things</Link>
-            {isAdmin && <Link to="/admin">Admin Dashboard</Link>}
-
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-          </div>
-        ) : (
-          <div>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
-        )}
-      </nav>
-      <hr />
-    </div>
- */

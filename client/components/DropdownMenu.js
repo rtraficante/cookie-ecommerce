@@ -2,10 +2,13 @@ import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import { IconButton, Fade, Menu, MenuItem } from "@material-ui/core";
 import { Link, Redirect } from "react-router-dom";
+// import { useSelector } from "react-redux";
 
 const DropDownMenu = ({ handleClick, isLoggedIn, isAdmin, classes }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  // const user = useSelector((state) => state.auth);
+
   const clickHandler = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
@@ -33,6 +36,9 @@ const DropDownMenu = ({ handleClick, isLoggedIn, isAdmin, classes }) => {
         ) : null}
         {isLoggedIn ? (
           <div>
+            <MenuItem>
+              <Link to={`/user-info`}>My Account</Link>
+            </MenuItem>
             <MenuItem>
               <Link
                 onClick={() => {

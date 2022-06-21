@@ -14,6 +14,7 @@ import { me } from "./store";
 import Cart from "./components/Cart";
 import { Login } from "./components/LoginForm";
 import { Signup } from "./components/SignUpForm";
+import UserPage from "./components/users/UserPage";
 
 /**
  * COMPONENT
@@ -71,11 +72,10 @@ class Routes extends Component {
         <Route exact path="/admin/users">
           {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
         </Route>
-        <Route path="/admin/users/:id">
-          {isAdmin ? <SingleUserView /> : <Redirect to="/home" />}
-        </Route>
+        <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
         <Route exact path="/admin/products/add" component={AddProduct} />
         <Route path="/admin/products/:id/update" component={UpdateProduct} />
+        <Route exact path="/user-info" component={UserPage} />
       </Switch>
     );
   }
