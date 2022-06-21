@@ -42,10 +42,15 @@ router.get("/orders", requireToken, async (req, res, next) => {
     const user = await User.findByPk(req.headers.id);
     console.log("user", req.headers.id);
     const orders = await Order.findAll({
-      // where: {
-      //   userId: user.id,
-      // },
-      include: [{ model: Product }],
+      where: {
+        userId: user.id,
+      },
+      include: [
+        {
+          all: true,
+          nested: true,
+        },
+      ],
     });
     // res.sendStatus(200);
     res.send(orders);

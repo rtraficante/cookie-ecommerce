@@ -5,17 +5,18 @@ import { getAllOrders } from "../../store/cart";
 
 const UserPage = () => {
   const user = useSelector((state) => state.auth);
-  const orders = useSelector((state) => state.cart);
+  const grabOrders = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  useEffect((getState) => {
-    if (getState().auth.id) dispatch(getAllOrders());
+  const orders = grabOrders || [];
+  useEffect(() => {
+    dispatch(getAllOrders());
   }, []);
   console.log(orders);
   return (
     <div>
-      {orders.map((order) => (
-        <div>{order.id}</div>
+      {orders.map((order, i) => (
+        <div key={i}>{order.id}</div>
       ))}
     </div>
   );

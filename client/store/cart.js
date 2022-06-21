@@ -130,21 +130,19 @@ export const removeFromCart = (id) => {
 
 export const getAllOrders = () => {
   return async (dispatch, getState) => {
-    if (getState().auth.id) {
-      try {
-        const token = localStorage.getItem("token");
-        // const id = getState().auth.id;
-        // console.log(id);
-        const { data } = await axios.get("/api/cart/orders", {
-          headers: {
-            id: getState().auth.id,
-            authorization: token,
-          },
-        });
-        dispatch(_getAllOrders(data));
-      } catch (err) {
-        console.error(err);
-      }
+    try {
+      const token = localStorage.getItem("token");
+      // const id = getState().auth.id;
+      // console.log(id);
+      const { data } = await axios.get("/api/cart/orders", {
+        headers: {
+          id: getState().auth.id,
+          authorization: token,
+        },
+      });
+      dispatch(_getAllOrders(data));
+    } catch (err) {
+      console.error(err);
     }
   };
 };
