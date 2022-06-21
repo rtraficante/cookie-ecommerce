@@ -8,6 +8,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   list: {
@@ -27,14 +28,28 @@ export default function SideSwipeBar() {
     right: false,
   });
 
+  const products = useSelector((state) => state.allProducts);
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
-
     setState({ ...state, [anchor]: open });
-    // setState(open);
   };
+
+  const filterCategory = (products) => {
+    let arr = [];
+    for (let i = 0; i < products.length; i++) {
+      let product = products[i];
+      console.log(product["category"])
+      if (!arr.includes(product["category"])) {
+        arr.push(product["category"]);
+      }
+    }
+    return arr;
+  }
+  
+  let filteredProducts = filterCategory(products)
 
   const list = (anchor) => (
     <div
@@ -46,14 +61,12 @@ export default function SideSwipeBar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Chocolate Chip", "Snicker Doodle", "Oatmeal Raisin", "Sugar Cookie"].map((text, index) => (
-          <ListItem button key={text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-            <ListItemText primary={text} />
+        {filteredProducts.map(category => (
+          <ListItem button key={category}>
+            <ListItemText primary={category} />
           </ListItem>
         ))}
       </List>
-      {/* <Divider /> */}
     </div>
   );
 
@@ -72,14 +85,3 @@ export default function SideSwipeBar() {
     </div>
   );
 }
-
-/*
-      {["left", "right", "top", "bottom"].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
-*/
