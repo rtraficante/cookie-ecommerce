@@ -19,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
   const classes = useNavStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="relative">
+      <AppBar position="fixed">
         <Toolbar>
           <DropDownMenu handleClick={handleClick} isLoggedIn={isLoggedIn} isAdmin={isAdmin} classes={classes} />
           <Typography className={classes.title} variant="h6" noWrap>

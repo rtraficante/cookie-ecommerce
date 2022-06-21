@@ -37,7 +37,9 @@ const DropDownMenu = ({ handleClick, isLoggedIn, isAdmin, classes }) => {
         {isLoggedIn ? (
           <div>
             <MenuItem>
-              <Link to={`/user-info`}>My Account</Link>
+              <Link to={`/user-info`} onClick={handleClose}>
+                My Account
+              </Link>
             </MenuItem>
             <MenuItem>
               <Link

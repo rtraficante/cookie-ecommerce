@@ -25,12 +25,14 @@ function AllProducts() {
   const classes = useProductStyles();
   return (
     <Container maxWidth="lg" sx={{ marginY: 12 }}>
-      <Grid container spacing={5}>
+      <Grid container spacing={10}>
         {products.map((product) => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
               <SingleProductCard product={product} />
-              <Button href={`/products/${product.id}`}>View details</Button>
+              <Button href={`/products/${product.id}`} variant="contained" color="primary">
+                View details
+              </Button>
             </Grid>
           );
         })}
