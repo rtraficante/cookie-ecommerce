@@ -12,6 +12,12 @@ const Confirmation = () => {
       {order.map((product) => (
         <CheckoutItem key={product.id} product={product} />
       ))}
+      <h5>
+        Total: $
+        {order.reduce((accum, val) => {
+          return accum + val.price;
+        }, 0)}
+      </h5>
     </div>
   );
 };
