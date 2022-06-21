@@ -3,6 +3,9 @@ import { fetchProducts } from "../store/allProducts";
 import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { Box, Button, Container, Grid } from "@material-ui/core";
+import { useProductStyles } from "../theme";
+import SingleProductCard from "./SingleProductCard";
 
 function AllProducts() {
   const products = useSelector((state) => state.allProducts);
@@ -19,19 +22,20 @@ function AllProducts() {
     history.push("/cart");
   };
 
+  const classes = useProductStyles();
   return (
-    <div className="all-products">
-      {products.map((product) => (
-        <div key={product.id}>
-          <Link to={`/products/${product.id}`}>
-            <img src={product.imageURL} alt="image of cookie" />
-            <h4>{product.name}</h4>
-            <p>{product.price}</p>
-          </Link>
-          <button onClick={() => handleAddToCart(product)}>Add To Cart</button>
-        </div>
-      ))}
-    </div>
+    <Container maxWidth="lg" sx={{ marginY: 12 }}>
+      <Grid container spacing={5}>
+        {products.map((product) => {
+          return (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+              <SingleProductCard product={product} />
+              <Button href={`/products/${product.id}`}>View details</Button>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Container>
   );
 }
 
