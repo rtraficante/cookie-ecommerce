@@ -128,6 +128,7 @@ export const removeFromCart = (id) => {
   };
 };
 
+
 export const getAllOrders = () => {
   return async (dispatch, getState) => {
     try {
@@ -149,6 +150,7 @@ export const getAllOrders = () => {
 
 const cartLocalStorage = localStorage.getItem("cart") && localStorage.getItem("cart") !== "undefined" ? JSON.parse(localStorage.getItem("cart")) : [];
 
+
 const initialState = cartLocalStorage;
 
 export const cartReducer = (state = initialState, action) => {
@@ -157,7 +159,9 @@ export const cartReducer = (state = initialState, action) => {
       const existingItem = state.find((item) => item.id === action.product.id);
 
       if (existingItem) {
-        return state.map((item) => (item.id === existingItem.id ? action.product : item));
+        return state.map((item) =>
+          item.id === existingItem.id ? action.product : item
+        );
       }
 
       return [...state, action.product];
@@ -170,7 +174,6 @@ export const cartReducer = (state = initialState, action) => {
 
     case EDIT_CART:
       const existsInCart = state.find((item) => item.id === action.product.id);
-
       return state.map((item) => (item.id === existsInCart.id ? action.product : item));
 
     case GET_ALL_ORDERS:

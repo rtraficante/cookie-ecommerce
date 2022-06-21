@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CheckoutItem from "./CheckoutItem";
 import { loadFromUser } from "../store/cart";
+import StripeContainer from "./StripeContainer";
 import { checkout } from "../store/checkout";
 import { useHistory } from "react-router-dom";
 import {
@@ -38,12 +39,6 @@ const Checkout = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(checkout(cart));
-    history.push("/home");
-  };
-
   return (
     <>
       <a href="/cart">Return To Cart</a>
@@ -57,7 +52,7 @@ const Checkout = () => {
           )}
         </Grid>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <FormControl>
             <InputLabel htmlFor="name">Name</InputLabel>
             <Input
@@ -90,12 +85,9 @@ const Checkout = () => {
               required
             />
           </FormControl>
-
-          <Button variant="contained" type="submit" color="primary">
-            Checkout
-          </Button>
         </form>
       </Grid>
+      <StripeContainer />
     </>
   );
 };

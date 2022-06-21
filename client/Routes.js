@@ -9,6 +9,7 @@ import SingleProduct from "./components/SingleProduct";
 import AdminOverview from "./components/adminViews/AdminOverview";
 import AllUsersView from "./components/adminViews/AllUsersView";
 import SingleUserView from "./components/adminViews/SingleUserView";
+import Confirmation from "./components/Confirmation";
 import Checkout from "./components/Checkout";
 import { me } from "./store";
 import Cart from "./components/Cart";
@@ -65,6 +66,7 @@ class Routes extends Component {
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/confirmation" component={Confirmation} />
 
         <Route exact path="/admin">
           {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}

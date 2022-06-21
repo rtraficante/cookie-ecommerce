@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { fetchProduct } from "../store/singleProduct";
 import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function SingleProduct(props) {
+  const history = useHistory();
   const product = useSelector((state) => state.singleProduct);
   const dispatch = useDispatch();
 
@@ -16,6 +18,7 @@ function SingleProduct(props) {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product, qty));
+    history.push("/cart");
   };
 
   const handleQtyChange = (event) => {
