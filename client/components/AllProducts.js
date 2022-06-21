@@ -7,7 +7,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Box, Button, Paper, Container, Grid, Card } from "@material-ui/core";
 import { useProductStyles } from "../theme";
 // import SideSwipeBar from "./SideSwipeBar";
-import SingleProduct from "./SingleProduct";
+// import SingleProduct from "./SingleProduct";
+import SingleProductCard from "./SingleProductCard";
 
 function AllProducts(props) {
   const products = useSelector((state) => state.allProducts);
@@ -30,7 +31,7 @@ function AllProducts(props) {
         {products.map((product) => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
-              <SingleProduct product={product} />
+              <SingleProductCard product={product} onClick={<Link to={`/products/${product.id}`} />} />
             </Grid>
           );
         })}
