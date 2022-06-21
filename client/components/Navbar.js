@@ -30,11 +30,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             GS-TEAM-Q
           </Typography>
-          <div className="cookie-types">
-            <Box sx={{ justifyContent: "left" }}>
-              <SideSwipeBar />
-            </Box>
-          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

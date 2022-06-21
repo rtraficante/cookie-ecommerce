@@ -9,6 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   list: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SideSwipeBar() {
+export default function SideSwipeBar({ setFilter }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -41,15 +42,15 @@ export default function SideSwipeBar() {
     let arr = [];
     for (let i = 0; i < products.length; i++) {
       let product = products[i];
-      console.log(product["category"])
       if (!arr.includes(product["category"])) {
         arr.push(product["category"]);
       }
     }
+    arr.push("all");
     return arr;
   }
-  
-  let filteredProducts = filterCategory(products)
+ 
+  let filteredProducts = filterCategory(products);
 
   const list = (anchor) => (
     <div
@@ -62,8 +63,8 @@ export default function SideSwipeBar() {
     >
       <List>
         {filteredProducts.map(category => (
-          <ListItem button key={category}>
-            <ListItemText primary={category} />
+          <ListItem button key={category} >
+            <ListItemText primary={category} onClick={() => setFilter(category)}/>
           </ListItem>
         ))}
       </List>

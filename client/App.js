@@ -8,6 +8,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Navbar />
+      <div style={{paddingTop: 80}}/>
       <Routes />
     </ThemeProvider>
   );

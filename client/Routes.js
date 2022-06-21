@@ -19,9 +19,6 @@ import { Signup } from "./components/SignUpForm";
  * COMPONENT
  */
 class Routes extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
   componentDidMount() {
     this.props.loadInitialData();
   }
