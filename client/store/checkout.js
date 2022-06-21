@@ -24,7 +24,7 @@ const initalState = [];
 export const checkoutReducer = (state = initalState, action) => {
   switch (action.type) {
     case CHECKOUT:
-      return [];
+      return action.cart;
     default:
       return state;
   }

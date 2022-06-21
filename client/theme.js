@@ -67,7 +67,7 @@ theme.overrides = {
 
 export const useProductStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: "flex grow",
     maxHeight: "100%",
     minHeight: "100%",
     maxWidth: 500,
@@ -76,7 +76,7 @@ export const useProductStyles = makeStyles((theme) => ({
   image: {
     minWidth: "100%",
     maxWidth: "100%",
-    minHeight: 200,
+    minHeight: 180,
     maxHeight: 400,
     position: "static",
     backgroundSize: "contain",

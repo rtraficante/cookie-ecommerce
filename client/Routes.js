@@ -9,11 +9,13 @@ import SingleProduct from "./components/SingleProduct";
 import AdminOverview from "./components/adminViews/AdminOverview";
 import AllUsersView from "./components/adminViews/AllUsersView";
 import SingleUserView from "./components/adminViews/SingleUserView";
+import Confirmation from "./components/Confirmation";
 import Checkout from "./components/Checkout";
 import { me } from "./store";
 import Cart from "./components/Cart";
 import { Login } from "./components/LoginForm";
 import { Signup } from "./components/SignUpForm";
+import UserPage from "./components/users/UserPage";
 
 /**
  * COMPONENT
@@ -61,6 +63,7 @@ class Routes extends Component {
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/confirmation" component={Confirmation} />
 
         <Route exact path="/admin">
           {isAdmin ? <AdminOverview /> : <Redirect to="/home" />}
@@ -68,11 +71,10 @@ class Routes extends Component {
         <Route exact path="/admin/users">
           {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
         </Route>
-        <Route path="/admin/users/:id">
-          {isAdmin ? <SingleUserView /> : <Redirect to="/home" />}
-        </Route>
+        <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
         <Route exact path="/admin/products/add" component={AddProduct} />
         <Route path="/admin/products/:id/update" component={UpdateProduct} />
+        <Route exact path="/user-info" component={UserPage} />
       </Switch>
     );
   }

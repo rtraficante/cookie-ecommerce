@@ -1,15 +1,19 @@
 const router = require("express").Router();
 const {
-  models: { Order, User },
+  models: { Order, User, Product },
 } = require("../db");
 
 router.post("/", async (req, res) => {
   try {
-    const user = await User.findByPk(req.headers.user, {
-      include: [{ model: Order }],
-    });
+    const user = await User.findByPk(req.headers.user);
 
-    const cart = user.orders.find((order) => order.status === "Pending");
+    const cart = await Order.findOne({
+      where: {
+        userId: user.id,
+        status: "Pending",
+      },
+      include: [{ model: Product }],
+    });
 
     await cart.update({
       status: "Purchased",

@@ -37,15 +37,32 @@ router.get("/", requireToken, async (req, res) => {
   }
 });
 
+router.get("/orders", requireToken, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.headers.id);
+    console.log("user", req.headers.id);
+    const orders = await Order.findAll({
+      where: {
+        userId: user.id,
+      },
+      include: {
+        model: Product,
+        attributes: ["id", "price"],
+      },
+    });
+    res.send(orders);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     const user = await User.findByPk(req.headers.user, {
       include: [{ model: Order }],
     });
 
-    const pendingOrder = user.orders.find(
-      (order) => order.status === "Pending"
-    );
+    const pendingOrder = user.orders.find((order) => order.status === "Pending");
 
     let order;
     if (!pendingOrder) {
@@ -74,9 +91,7 @@ router.delete("/:id", async (req, res) => {
       include: [{ model: Order }],
     });
 
-    const pendingOrder = user.orders.find(
-      (order) => order.status === "Pending"
-    );
+    const pendingOrder = user.orders.find((order) => order.status === "Pending");
 
     const products = await pendingOrder.getProducts({
       where: { id: req.params.id },
@@ -95,9 +110,7 @@ router.put("/:id", async (req, res) => {
       include: [{ model: Order }],
     });
 
-    const pendingOrder = user.orders.find(
-      (order) => order.status === "Pending"
-    );
+    const pendingOrder = user.orders.find((order) => order.status === "Pending");
 
     const cartItem = await OrderItem.findOne({
       where: {
@@ -117,5 +130,6 @@ router.put("/:id", async (req, res) => {
     console.error(err);
   }
 });
+
 
 module.exports = router;

@@ -31,6 +31,7 @@ function AllProducts() {
     <>
     <SideSwipeBar setFilter={setFilter} />
     <Container maxWidth="lg" sx={{ marginY: 12 }}>
+
       <Grid container spacing={5}>
         {filter !== "all" ?
           products.filter(product => filter === product.category).map((product) => {
@@ -38,6 +39,7 @@ function AllProducts() {
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
                 <SingleProductCard product={product} />
               <Button href={`/products/${product.id}`}>View details</Button>
+
             </Grid>
           );
           }) :
