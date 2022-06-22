@@ -29,6 +29,24 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
+router.put("/edit", async (req, res, next) => {
+  try {
+    const { id, username, firstName, lastName, email } = req.body;
+    const user = await User.findByPk({ where: { id: id } });
+    // const user = await User.update({
+    //   username,
+    //   firstName,
+    //   lastName,
+    //   password,
+    //   email,
+    // });
+
+    res.send({ token: await user.generateToken() });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get("/me", async (req, res, next) => {
   try {
     res.send(await User.findByToken(req.headers.authorization));

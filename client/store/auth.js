@@ -7,11 +7,16 @@ const TOKEN = "token";
  * ACTION TYPES
  */
 const SET_AUTH = "SET_AUTH";
+const EDIT_USER_INFO = "EDIT_USER_INFO";
 
 /**
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
+const _editUserInfo = (auth) => ({
+  type: EDIT_USER_INFO,
+  auth,
+});
 
 /**
  * THUNK CREATORS
@@ -40,9 +45,28 @@ export const authenticate =
   };
 
 export const registration =
-  (email, username, password, method) => async (dispatch) => {
+  (email, username, firstName, lastName, password, method) =>
+  async (dispatch) => {
     try {
       const res = await axios.post(`/auth/${method}`, {
+        email,
+        username,
+        firstName,
+        lastName,
+        password,
+      });
+      window.localStorage.setItem(TOKEN, res.data.token);
+      console.log(res);
+      dispatch(me());
+    } catch (authError) {
+      return dispatch(setAuth({ error: authError }));
+    }
+  };
+
+export const editUserInfo =
+  (email, username, password, method) => async (dispatch) => {
+    try {
+      const res = await axios.put(`/auth/${method}`, {
         email,
         username,
         password,

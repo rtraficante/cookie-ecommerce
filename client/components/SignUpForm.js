@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { registration } from '../store';
+import React from "react";
+import { connect } from "react-redux";
+import { registration } from "../store";
 
 /**
  * COMPONENT
@@ -22,6 +22,18 @@ const SignUpForm = (props) => {
             <small>Username</small>
           </label>
           <input name="username" type="text" />
+        </div>{" "}
+        <div>
+          <label htmlFor="firstName">
+            <small>First Name</small>
+          </label>
+          <input name="firstName" type="text" />
+        </div>{" "}
+        <div>
+          <label htmlFor="lastName">
+            <small>Last Name</small>
+          </label>
+          <input name="lastName" type="text" />
         </div>
         <div>
           <label htmlFor="password">
@@ -47,8 +59,8 @@ const SignUpForm = (props) => {
  */
 const mapSignup = (state) => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
+    name: "signup",
+    displayName: "Sign Up",
     error: state.auth.error,
   };
 };
@@ -60,8 +72,13 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const username = evt.target.username.value;
+      const firstName = evt.target.firstName.value;
+      const lastName = evt.target.lastName.value;
       const password = evt.target.password.value;
-      dispatch(registration(email, username, password, formName));
+
+      dispatch(
+        registration(email, username, firstName, lastName, password, formName)
+      );
     },
   };
 };
