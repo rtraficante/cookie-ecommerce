@@ -1,5 +1,11 @@
 import { createTheme } from "@material-ui/core/styles";
-import { black, deepPurple, amber, brown, orange } from "@material-ui/core/colors";
+import {
+  black,
+  deepPurple,
+  amber,
+  brown,
+  orange,
+} from "@material-ui/core/colors";
 import { alpha, makeStyles } from "@material-ui/core/styles";
 
 const theme = createTheme({

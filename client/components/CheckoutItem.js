@@ -7,7 +7,11 @@ const CheckoutItem = (props) => {
 
   return (
     <Link to={`/products/${product.id}`} className="checkout-item">
-      <img src={product.imageURL} alt="image of cookie" />
+      <img
+        src={product.imageURL}
+        alt="image of cookie"
+        style={{ maxWidth: 150 }}
+      />
       <div className="checkout-details">
         <Typography variant="h5">{product.name}</Typography>
         <Typography variant="body1">
