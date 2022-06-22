@@ -12,7 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import { useNavStyles } from "../theme";
 import DropDownMenu from "./DropdownMenu";
-import SideSwipeBar from "./SideSwipeBar";
+import CartCheckoutIcon from "./CartCheckoutIcon";
 import { Box } from "@material-ui/core";
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
@@ -25,6 +25,9 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             GS-TEAM-Q
           </Typography>
+          <div className="Cart-badge">
+            <CartCheckoutIcon />
+          </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
