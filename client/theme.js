@@ -89,12 +89,12 @@ export const useProductStyles = makeStyles((theme) => ({
   p: {
     color: "#0288d1",
     fontSize: 20,
-    fontFamily: "Fascinate",
+    fontFamily: "Emilys Candy",
   },
   h4: {
     color: "#0288d1",
     fontSize: 20,
-    fontFamily: "Fascinate",
+    fontFamily: "Emilys Candy",
   },
 }));
 
