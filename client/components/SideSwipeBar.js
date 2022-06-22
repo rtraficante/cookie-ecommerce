@@ -48,8 +48,8 @@ export default function SideSwipeBar({ setFilter }) {
     }
     arr.push("all");
     return arr;
-  }
- 
+  };
+
   let filteredProducts = filterCategory(products);
 
   const list = (anchor) => (
@@ -62,9 +62,9 @@ export default function SideSwipeBar({ setFilter }) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {filteredProducts.map(category => (
-          <ListItem button key={category} >
-            <ListItemText primary={category} onClick={() => setFilter(category)}/>
+        {filteredProducts.map((category) => (
+          <ListItem button key={category}>
+            <ListItemText primary={category} onClick={() => setFilter(category)} />
           </ListItem>
         ))}
       </List>
@@ -75,7 +75,7 @@ export default function SideSwipeBar({ setFilter }) {
     <div>
       {
         <React.Fragment>
-          <Button color="inherit" onClick={toggleDrawer("left", true)}>
+          <Button variant="contained" color="primary" onClick={toggleDrawer("left", true)}>
             Cookies!
           </Button>
           <SwipeableDrawer anchor={"left"} open={state["left"]} onClose={toggleDrawer("left", false)} onOpen={toggleDrawer("left", true)}>

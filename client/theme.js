@@ -5,6 +5,9 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 const theme = createTheme({
   components: {
     MuiTypography: {
+      root: {
+        fontFamily: "Emilys Candy",
+      },
       variants: [
         {
           props: {
@@ -35,7 +38,7 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#9D7E67",
+      main: "#F5DADF",
       // main: deepPurple[700],
     },
 
@@ -51,7 +54,8 @@ theme.overrides = {
     root: {
       borderRadius: 15,
       textTransform: "none",
-      fontSize: 24,
+      fontSize: 20,
+      fontFamily: "Emilys Candy",
     },
     containedPrimary: {
       "&:hover": {
@@ -83,18 +87,18 @@ export const useProductStyles = makeStyles((theme) => ({
   },
   media: {
     display: "flex",
-    height: 100,
-    width: 100,
+    height: "auto",
+    // width: 100,
   },
   p: {
     color: "#0288d1",
     fontSize: 20,
-    fontFamily: "Fascinate",
+    fontFamily: "Emilys Candy",
   },
   h4: {
     color: "#0288d1",
     fontSize: 20,
-    fontFamily: "Fascinate",
+    fontFamily: "Emilys Candy",
   },
 }));
 
