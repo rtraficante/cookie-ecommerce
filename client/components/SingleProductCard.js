@@ -17,7 +17,7 @@ function SingleProductCard({ product }) {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product, qty));
-    history.push("/cart");
+    // history.push("/cart");
   };
 
   const addOne = () => setQty(qty++);

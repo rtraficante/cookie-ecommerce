@@ -16,7 +16,7 @@ const StyledBadge = withStyles((theme) => ({
 export default function CartCheckoutIcon() {
   return (
     <IconButton aria-label="cart" href="/cart">
-      <StyledBadge color="secondary">
+      <StyledBadge color="secondary" overlap="rectangular">
         <ShoppingCartIcon />
       </StyledBadge>
     </IconButton>
