@@ -43,7 +43,7 @@ const PaymentForm = () => {
     if (!error) {
       try {
         const totalPrice = cart.reduce((accum, val) => {
-          return accum + val.price;
+          return (accum += val.price * val.qty);
         }, 0);
         const { id } = paymentMethod;
         const { data } = await axios.post("/api/payment", {
