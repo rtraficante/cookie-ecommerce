@@ -22,7 +22,9 @@ const Checkout = () => {
   const [values, setValues] = useState({
     name: "",
     email: "",
-    address: "",
+    streetAddress: "",
+    city: "",
+    state: "",
   });
 
   useEffect(() => {
@@ -39,9 +41,17 @@ const Checkout = () => {
     }));
   };
 
+  const totalPrice = cart.reduce((accum, val) => {
+    return (accum += val.price * val.qty);
+  }, 0);
+
   return (
     <>
-      <a href="/cart">Return To Cart</a>
+      <Grid container className="mb">
+        <Grid item>
+          <a href="/cart">Return To Cart</a>
+        </Grid>
+      </Grid>
 
       <Grid container direction="row" justifyContent="center" spacing={2}>
         <Grid item xs={12} sm={6} md={4} lg={3} className="checkout-products">
@@ -50,44 +60,91 @@ const Checkout = () => {
           ) : (
             cart.map((item) => <CheckoutItem key={item.id} product={item} />)
           )}
+          Total: ${totalPrice}
         </Grid>
 
-        <form>
-          <FormControl>
-            <InputLabel htmlFor="name">Name</InputLabel>
-            <Input
-              id="name"
-              name="name"
-              value={values.name}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+        <Grid
+          item
+          container
+          xs={12}
+          sm={6}
+          md={4}
+          direction="column"
+          alignItems="center"
+        >
+          <Grid item>
+            <Typography variant="h5">Shipping Details</Typography>
+          </Grid>
+          <Grid item className="checkout-row">
+            <FormControl className="checkout-field">
+              <InputLabel htmlFor="name">Name</InputLabel>
+              <Input
+                id="name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+          </Grid>
 
-          <FormControl>
-            <InputLabel htmlFor="email">Email</InputLabel>
-            <Input
-              id="email"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
+          <Grid item className="checkout-row">
+            <FormControl className="checkout-field">
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <Input
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+          </Grid>
 
-          <FormControl>
-            <InputLabel htmlFor="address">Address</InputLabel>
-            <Input
-              id="address"
-              name="address"
-              value={values.address}
-              onChange={handleChange}
-              required
-            />
-          </FormControl>
-        </form>
+          <Grid item className="checkout-row">
+            <FormControl className="checkout-field">
+              <InputLabel htmlFor="street-address">Street Address</InputLabel>
+              <Input
+                id="street-address"
+                name="streetAddress"
+                value={values.streetAddress}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+          </Grid>
+          <Grid item className="checkout-row">
+            <FormControl className="checkout-field">
+              <InputLabel htmlFor="city">City</InputLabel>
+              <Input
+                id="city"
+                name="city"
+                value={values.city}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+          </Grid>
+          <Grid item className="checkout-row">
+            <FormControl className="checkout-field">
+              <InputLabel htmlFor="state">State</InputLabel>
+              <Input
+                id="state"
+                name="state"
+                value={values.state}
+                onChange={handleChange}
+                required
+              />
+            </FormControl>
+          </Grid>
+          <Grid item style={{ marginTop: 20 }}>
+            <Typography variant="h5">Payment Details</Typography>
+          </Grid>
+          <Grid item className="checkout-row">
+            <StripeContainer />
+          </Grid>
+        </Grid>
       </Grid>
-      <StripeContainer />
     </>
   );
 };
