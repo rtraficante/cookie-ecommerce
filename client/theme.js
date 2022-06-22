@@ -5,6 +5,9 @@ import { alpha, makeStyles } from "@material-ui/core/styles";
 const theme = createTheme({
   components: {
     MuiTypography: {
+      root: {
+        fontFamily: "Emilys Candy",
+      },
       variants: [
         {
           props: {
@@ -51,7 +54,8 @@ theme.overrides = {
     root: {
       borderRadius: 15,
       textTransform: "none",
-      fontSize: 24,
+      fontSize: 20,
+      fontFamily: "Emilys Candy",
     },
     containedPrimary: {
       "&:hover": {
