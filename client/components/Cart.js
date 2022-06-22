@@ -17,9 +17,9 @@ const Cart = () => {
     }
   }, [isLoggedIn]);
 
-  // const handleQtyChange = (product, qty) => {
-  //   dispatch(editCart(product, qty));
-  // };
+  const handleQtyChange = (product, qty) => {
+    dispatch(editCart(product, qty));
+  };
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));

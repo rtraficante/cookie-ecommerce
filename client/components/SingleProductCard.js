@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchProduct } from "../store/singleProduct";
-import { addToCart } from "../store/cart";
+import { addToCart, editCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useProductStyles } from "../theme";
@@ -13,15 +13,26 @@ function SingleProductCard({ product }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  let [qty, setQty] = useState(1);
+  let [qty, setQty] = useState(0);
+  let [cartQty, setCartQty] = useState(product.qty);
 
   const handleAddToCart = () => {
     dispatch(addToCart(product, qty));
     // history.push("/cart");
   };
 
-  const addOne = () => setQty(qty++);
-  const minusOne = () => setQty(qty--);
+  const handleQtyChange = (product, qty) => {
+    dispatch(editCart(product, qty));
+  };
+
+  const addOne = () => {
+    setQty(qty++);
+    handleQtyChange(product, qty);
+  };
+  const minusOne = () => {
+    setQty(qty--);
+    handleQtyChange(product, qty);
+  };
 
   const classes = useProductStyles();
   const { imageURL, name, price, description } = product;
