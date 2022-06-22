@@ -35,11 +35,6 @@ img {
   justify-content: space-evenly;
 }
 
-.checkout-item > img {
-  max-width: 100px;
-  max-height: 100px;
-}
-
 .checkout-details {
   display: flex;
   flex-direction: column;

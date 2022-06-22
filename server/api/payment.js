@@ -1,10 +1,9 @@
-const stripe = require("stripe")(
-  "sk_test_51LDBLhL5DnX6BuqIUqXOHwkBSMrRdIJfXDuBZBCt9tyR8rzZjGpPhM29JGNfhruBlXegzUD6NWsMYfprO65UDGNp00Dn9pMlOF"
-);
+const stripe = require("stripe")(process.env.STRIPE);
 const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   try {
+    console.log(process.env);
     const { amount, id } = req.body;
     const payment = await stripe.paymentIntents.create({
       amount,
