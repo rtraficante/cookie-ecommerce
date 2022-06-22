@@ -21,12 +21,6 @@ function AllProducts() {
     dispatch(fetchProducts());
   }, []);
 
-  const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-    history.push("/cart");
-  };
-
-  const classes = useProductStyles();
   return (
     <>
       <SideSwipeBar setFilter={setFilter} />

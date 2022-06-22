@@ -35,7 +35,7 @@ const Cart = () => {
             <Grid container spacing={5} style={{ justifyContent: "space-around" }}>
               {cart.map((item, i) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-                  <CartItem key={item.id} product={item} removeFromCart={handleRemoveFromCart} />
+                  <CartItem key={item.id} product={item} removeFromCart={handleRemoveFromCart} handleQtyChange={handleQtyChange} />
                 </Grid>
               ))}
             </Grid>
