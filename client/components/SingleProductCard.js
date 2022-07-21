@@ -3,13 +3,10 @@ import { fetchProduct } from "../store/singleProduct";
 import { addToCart, editCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { useProductStyles } from "../theme";
-import { Card, Box, CardMedia, CardContent, CardHeader, CardActions, Typography, IconButton, Tooltip } from "@material-ui/core";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
-function SingleProductCard({ product, handleQtyChange, cartItem }) {
+function SingleProductCard({ product, cartItem }) {
   // const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,43 +18,61 @@ function SingleProductCard({ product, handleQtyChange, cartItem }) {
     // history.push("/cart");
   };
 
-  const addOne = () => {
-    if (cartItem) handleQtyChange(product, product.qty + 1);
-    else setQty(qty++);
-  };
-  const minusOne = () => {
-    if (cartItem) handleQtyChange(product, product.qty - 1);
-    else setQty(qty--);
+  const mapInventory = (num) => {
+    const nums = [];
+    for (let i = 1; i <= num; i++) {
+      nums.push(i);
+    }
+    return nums;
   };
 
-  const classes = useProductStyles();
-  const { imageURL, name, price, description } = product;
+  const handleQtyChange = (e) => {
+    setQty(e.target.value);
+  };
+
+  const { imageURL, name, price, inventory } = product;
 
   return (
-    <Card elevation={3} style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "90%", background: "linear-gradient(to right top, pink, white, orange)" }}>
-      <CardHeader title={<Typography className={classes.h4}>{name}</Typography>} align="center" />
-      <CardMedia image={imageURL} title={name} className={classes.image} />
-      <CardContent>
-        <Typography className={classes.p}>{description}</Typography>
-        <Typography className={classes.p}>${price}</Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        {cartItem ? null : (
-          <Tooltip title="Add to cart">
-            <IconButton aria-label="Add to cart" onClick={handleAddToCart}>
-              <ShoppingCartOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-        <Tooltip title="Remove">
-          <RemoveIcon fontSize="medium" onClick={minusOne} />
-        </Tooltip>
-        {cartItem ? product.qty : qty}
-        <Tooltip title="Add">
-          <AddIcon fontSize="medium" onClick={addOne} />
-        </Tooltip>
-      </CardActions>
-    </Card>
+    <div className="flex flex-col justify-center  p-4 m-4 border-2 rounded-xl w-[280px] max-w-[280px]">
+      <h2 className="text-center font-bold text-lg">{name}</h2>
+      <img
+        className="max-h-[240px] border-2 mt-2 rounded-lg"
+        src={imageURL}
+        alt="image of cookie"
+      />
+      <div className="my-4 flex justify-between items-center">
+        <p>
+          <strong>Price:</strong> ${price}
+        </p>
+        <div className="flex items-center">
+          <p className="text-center mr-2 font-bold">QTY:</p>
+          <select
+            className="border-2 rounded-xl p-2"
+            onChange={handleQtyChange}
+          >
+            {mapInventory(inventory).map((val) => (
+              <option key={val} value={val}>
+                {val}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <button
+          className="py-2 px-4 bg-blue-700 text-white rounded-lg"
+          onClick={handleAddToCart}
+        >
+          Add to Cart
+        </button>
+        <button
+          onClick={() => history.push(`/products/${product.id}`)}
+          className="py-2 px-4 bg-blue-400 text-white rounded-lg"
+        >
+          View Details
+        </button>
+      </div>
+    </div>
   );
 }
 

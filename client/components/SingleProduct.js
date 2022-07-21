@@ -3,8 +3,20 @@ import { fetchProduct } from "../store/singleProduct";
 import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button, Typography, Card, CardMedia, CardContent, CardHeader, CardActions, Tooltip, IconButton, CssBaseline, Container } from "@material-ui/core";
-import { useProductStyles } from "../theme";
+import {
+  Button,
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+  CardHeader,
+  CardActions,
+  Tooltip,
+  IconButton,
+  CssBaseline,
+  Container,
+} from "@material-ui/core";
+
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
@@ -32,16 +44,32 @@ function SingleProduct(props) {
     setQty(event.target.value);
   };
 
-  const classes = useProductStyles();
   const { imageURL, name, price, description } = product;
   return (
     <Container maxWidth="lg">
-      <Card xs={12} md={6} lg={3} elevation={3} style={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly", height: "auto", background: "linear-gradient(to right top, pink, white, orange)" }}>
-        <CardHeader align="center" title={<Typography className={classes.h4}>{name}</Typography>} />
-        <CardMedia component="img" alt="img of cookie" image={imageURL} title={name} className={classes.media} />
+      <Card
+        xs={12}
+        md={6}
+        lg={3}
+        elevation={3}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          height: "auto",
+          background: "linear-gradient(to right top, pink, white, orange)",
+        }}
+      >
+        <CardHeader align="center" title={<Typography>{name}</Typography>} />
+        <CardMedia
+          component="img"
+          alt="img of cookie"
+          image={imageURL}
+          title={name}
+        />
         <CardContent>
-          <Typography className={classes.p}>{description}</Typography>
-          <Typography className={classes.p}>${price}</Typography>
+          <Typography>{description}</Typography>
+          <Typography>${price}</Typography>
         </CardContent>
         <CardActions>
           <Tooltip title="Add to cart">

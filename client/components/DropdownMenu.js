@@ -4,7 +4,7 @@ import { IconButton, Fade, Menu, MenuItem } from "@material-ui/core";
 import { Link, Redirect } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
-const DropDownMenu = ({ handleClick, isLoggedIn, isAdmin, classes }) => {
+const DropDownMenu = ({ handleClick, isLoggedIn, isAdmin }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   // const user = useSelector((state) => state.auth);
@@ -14,10 +14,23 @@ const DropDownMenu = ({ handleClick, isLoggedIn, isAdmin, classes }) => {
 
   return (
     <div>
-      <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={clickHandler}>
+      <IconButton
+        edge="start"
+        className={"   "}
+        color="inherit"
+        aria-label="menu"
+        onClick={clickHandler}
+      >
         <MenuIcon />
       </IconButton>
-      <Menu id="fade-menu" MenuListProps={{ "aria-labelledby": "fade-button" }} anchorEl={anchorEl} open={open} onClose={handleClose} TransitionComponent={Fade}>
+      <Menu
+        id="fade-menu"
+        MenuListProps={{ "aria-labelledby": "fade-button" }}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Fade}
+      >
         <div>
           <MenuItem>
             <Link to="/products" onClick={handleClose}>
