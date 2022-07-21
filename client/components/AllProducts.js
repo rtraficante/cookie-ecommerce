@@ -20,42 +20,55 @@ function AllProducts() {
     dispatch(fetchProducts());
   }, []);
 
+  const filterCategory = (products) => {
+    let arr = ["all"];
+    for (let i = 0; i < products.length; i++) {
+      let product = products[i];
+      if (!arr.includes(product["category"])) {
+        arr.push(product["category"]);
+      }
+    }
+    return arr;
+  };
+
   return (
-    <>
-      <SideSwipeBar setFilter={setFilter} />
-      <div>
-        <select>
-          
-        </select>
-      </div>
-      <div className="flex flex-wrap justify-center items-center">
-        {filter !== "all"
-          ? products
-              .filter((product) => filter === product.category)
-              .map((product) => {
+    <div className="flex justify-center">
+      <div className="flex flex-col items-start">
+        <div className="m-2 flex items-center">
+          <h2 className="font-bold mr-2">Category</h2>
+          <select
+            className="border-2 p-2 rounded-md"
+            onChange={(e) => setFilter(e.target.value)}
+          >
+            {filterCategory(products).map((category, i) => (
+              <option value={category} key={i}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex flex-wrap justify-center md:justify-start items-center max-w-[1300px]">
+          {filter !== "all"
+            ? products
+                .filter((product) => filter === product.category)
+                .map((product) => {
+                  return (
+                    <div>
+                      <SingleProductCard product={product} />
+                      <Box style={{ padding: 1 }} />
+                    </div>
+                  );
+                })
+            : products.map((product) => {
                 return (
-                  <div>
+                  <div key={product.id}>
                     <SingleProductCard product={product} />
-                    <Box style={{ padding: 1 }} />
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      href={`/products/${product.id}`}
-                    >
-                      View details
-                    </Button>
                   </div>
                 );
-              })
-          : products.map((product) => {
-              return (
-                <div key={product.id}>
-                  <SingleProductCard product={product} />
-                </div>
-              );
-            })}
+              })}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

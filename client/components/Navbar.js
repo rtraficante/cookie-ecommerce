@@ -1,46 +1,31 @@
-// import React from "react";
 import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
 import { logout } from "../store";
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 import DropDownMenu from "./DropdownMenu";
-import CartCheckoutIcon from "./CartCheckoutIcon";
-import { Box } from "@material-ui/core";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useHistory } from "react-router-dom";
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
+  const history = useHistory();
+
   return (
-    <div className="">
-      <AppBar position="fixed">
-        <Toolbar>
+    <div className="bg-blue-700 fixed w-full drop-shadow-xl z-50">
+      <div className="flex items-center justify-between px-4 py-2 text-white">
+        <div className="flex items-center">
           <DropDownMenu
             handleClick={handleClick}
             isLoggedIn={isLoggedIn}
             isAdmin={isAdmin}
           />
-          <Typography className="" variant="h6" noWrap>
-            GS-TEAM-Q
-          </Typography>
-          <div className="Cart-badge">
-            <CartCheckoutIcon />
-          </div>
-          <div className={""}>
-            <div className={""}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
+          <h2 className="font-bold text-white text-xl">GS-TEAM-Q</h2>
+        </div>
+        <div className="flex items-center">
+          <ShoppingCartIcon
+            className="cursor-pointer"
+            onClick={() => history.push("/cart")}
+          />
+        </div>
+      </div>
     </div>
   );
 };

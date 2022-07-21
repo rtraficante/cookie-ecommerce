@@ -3,23 +3,6 @@ import { fetchProduct } from "../store/singleProduct";
 import { addToCart } from "../store/cart";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  Button,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  CardHeader,
-  CardActions,
-  Tooltip,
-  IconButton,
-  CssBaseline,
-  Container,
-} from "@material-ui/core";
-
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import RemoveIcon from "@material-ui/icons/Remove";
-import AddIcon from "@material-ui/icons/Add";
 
 function SingleProduct(props) {
   const history = useHistory();
@@ -38,55 +21,56 @@ function SingleProduct(props) {
     history.push("/products");
   };
 
-  const addOne = () => setQty(qty++);
-  const minusOne = () => setQty(qty--);
+  const mapInventory = (num) => {
+    const nums = [];
+    for (let i = 1; i <= num; i++) {
+      nums.push(i);
+    }
+    return nums;
+  };
+
   const handleQtyChange = (event) => {
     setQty(event.target.value);
   };
 
-  const { imageURL, name, price, description } = product;
+  const { imageURL, name, price, description, inventory } = product;
   return (
-    <Container maxWidth="lg">
-      <Card
-        xs={12}
-        md={6}
-        lg={3}
-        elevation={3}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-evenly",
-          height: "auto",
-          background: "linear-gradient(to right top, pink, white, orange)",
-        }}
-      >
-        <CardHeader align="center" title={<Typography>{name}</Typography>} />
-        <CardMedia
-          component="img"
-          alt="img of cookie"
-          image={imageURL}
-          title={name}
-        />
-        <CardContent>
-          <Typography>{description}</Typography>
-          <Typography>${price}</Typography>
-        </CardContent>
-        <CardActions>
-          <Tooltip title="Add to cart">
-            <IconButton aria-label="Add to cart" onClick={handleAddToCart}>
-              <ShoppingCartOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Remove">
-            <RemoveIcon fontSize="medium" onClick={minusOne} />
-          </Tooltip>
-          {qty}
-          <Tooltip title="Add">
-            <AddIcon fontSize="medium" onClick={addOne} />
-          </Tooltip>
-        </CardActions>
-      </Card>
-    </Container>
+    <div className="w-full">
+      <div className="flex justify-center">
+        <div className="flex justify-around border-2 py-8 w-5/6">
+          <img
+            className="max-w-[400px] rounded-md drop-shadow-md"
+            src={imageURL}
+          />
+          <div className="mt-32 w-1/4">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-4xl">{name}</h2>
+              <p className="text-red-600 text-2xl">${price}</p>
+            </div>
+            <p>{description}</p>
+            <div className="flex mt-40 items-center">
+              <p>QTY:</p>
+              <select
+                className="border-2 rounded-xl p-2 px-4 ml-2"
+                onChange={handleQtyChange}
+              >
+                {mapInventory(inventory).map((val) => (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                ))}
+              </select>
+              <button
+                className="py-2 px-4 ml-8 bg-blue-700 text-white rounded-lg"
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

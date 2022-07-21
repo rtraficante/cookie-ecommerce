@@ -9,9 +9,17 @@ const CartItem = (props) => {
 
   return (
     <div key={product.id}>
-      <SingleProductCard product={product} handleQtyChange={handleQtyChange} cartItem={true} />
+      <SingleProductCard
+        product={product}
+        handleQtyChange={handleQtyChange}
+        cartItem={true}
+      />
       <div style={{ paddingTop: 3 }}>
-        <Button variant="contained" color="primary" onClick={() => removeFromCart(product.id)}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => removeFromCart(product.id)}
+        >
           Remove From Cart
         </Button>
       </div>

@@ -50,10 +50,8 @@ class Routes extends Component {
             <Redirect to="/home" />
           ) : (
             <>
-              <p>Log yo'self in!</p>
               <Login />
-              <p>OR</p>
-              <p>Join us to satisfy your sweet tooth!</p>
+              <br />
               <Signup />
             </>
           )}
@@ -71,7 +69,9 @@ class Routes extends Component {
         <Route exact path="/admin/users">
           {isAdmin ? <AllUsersView /> : <Redirect to="/home" />}
         </Route>
-        <Route path="/admin/users/:id">{isAdmin ? <SingleUserView /> : <Redirect to="/home" />}</Route>
+        <Route path="/admin/users/:id">
+          {isAdmin ? <SingleUserView /> : <Redirect to="/home" />}
+        </Route>
         <Route exact path="/admin/products/add" component={AddProduct} />
         <Route path="/admin/products/:id/update" component={UpdateProduct} />
         <Route exact path="/user-info" component={UserPage} />

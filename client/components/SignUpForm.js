@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { registration } from '../store';
+import React from "react";
+import { connect } from "react-redux";
+import { registration } from "../store";
 
 /**
  * COMPONENT
@@ -9,31 +9,41 @@ const SignUpForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
+    <div className="flex justify-center mt-8">
+      <div className="border-2 drop-shadow-md p-6 w-[400px] rounded-md">
+        <h2 className="text-2xl mb-4">Sign up</h2>
+        <form onSubmit={handleSubmit} name={name}>
+          <div className="flex flex-col">
+            <label htmlFor="username">
+              <h2>Username</h2>
+            </label>
+            <input
+              name="username"
+              type="text"
+              className="border-2 drop-shadow-md p-2 rounded-md"
+            />
+          </div>
+          <div className="flex flex-col">
+            <label htmlFor="password" className="mt-4">
+              <h2>Password</h2>
+            </label>
+            <input
+              name="password"
+              type="password"
+              className="border-2 drop-shadow-md p-2 rounded-md"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="drop-shadow-md px-4 py-2 bg-blue-600 text-white mt-6 rounded-md"
+            >
+              {displayName}
+            </button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+      </div>
     </div>
   );
 };
@@ -47,8 +57,8 @@ const SignUpForm = (props) => {
  */
 const mapSignup = (state) => {
   return {
-    name: 'signup',
-    displayName: 'Sign Up',
+    name: "signup",
+    displayName: "Sign Up",
     error: state.auth.error,
   };
 };
