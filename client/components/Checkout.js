@@ -5,14 +5,7 @@ import { loadFromUser } from "../store/cart";
 import StripeContainer from "./StripeContainer";
 import { checkout } from "../store/checkout";
 import { useHistory } from "react-router-dom";
-import {
-  Grid,
-  Typography,
-  FormControl,
-  InputLabel,
-  Input,
-  Button,
-} from "@material-ui/core";
+
 
 const Checkout = () => {
   const history = useHistory();
@@ -46,106 +39,85 @@ const Checkout = () => {
   }, 0);
 
   return (
-    <>
-      <Grid container className="mb">
-        <Grid item>
+    <div className="flex justify-center">
+      <div className="flex flex-col justify-center items-center w-3/4 max-w-[900px]">
+        <div className="checkout-products border-2 p-4 w-full">
           <a href="/cart">Return To Cart</a>
-        </Grid>
-      </Grid>
-
-      <Grid container direction="row" justifyContent="center" spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={3} className="checkout-products">
           {cart.length === 0 ? (
             <div>Nothing to checkout</div>
           ) : (
             cart.map((item) => <CheckoutItem key={item.id} product={item} />)
           )}
           Total: ${totalPrice}
-        </Grid>
+        </div>
 
-        <Grid
-          item
-          container
-          xs={12}
-          sm={6}
-          md={4}
-          direction="column"
-          alignItems="center"
-        >
-          <Grid item>
-            <Typography variant="h5">Shipping Details</Typography>
-          </Grid>
-          <Grid item className="checkout-row">
-            <FormControl className="checkout-field">
-              <InputLabel htmlFor="name">Name</InputLabel>
-              <Input
-                id="name"
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                required
-              />
-            </FormControl>
-          </Grid>
+        <div className="border-2 mt-4 w-full p-4 flex flex-col items-center">
+          <h2 className="text-3xl">Shipping Details</h2>
 
-          <Grid item className="checkout-row">
-            <FormControl className="checkout-field">
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Input
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                required
-              />
-            </FormControl>
-          </Grid>
+          <div className="flex flex-col w-3/4">
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              className="border-2 px-2 py-1 rounded-md"
+              required
+            />
+          </div>
 
-          <Grid item className="checkout-row">
-            <FormControl className="checkout-field">
-              <InputLabel htmlFor="street-address">Street Address</InputLabel>
-              <Input
-                id="street-address"
-                name="streetAddress"
-                value={values.streetAddress}
-                onChange={handleChange}
-                required
-              />
-            </FormControl>
-          </Grid>
-          <Grid item className="checkout-row">
-            <FormControl className="checkout-field">
-              <InputLabel htmlFor="city">City</InputLabel>
-              <Input
-                id="city"
-                name="city"
-                value={values.city}
-                onChange={handleChange}
-                required
-              />
-            </FormControl>
-          </Grid>
-          <Grid item className="checkout-row">
-            <FormControl className="checkout-field">
-              <InputLabel htmlFor="state">State</InputLabel>
-              <Input
-                id="state"
-                name="state"
-                value={values.state}
-                onChange={handleChange}
-                required
-              />
-            </FormControl>
-          </Grid>
-          <Grid item style={{ marginTop: 20 }}>
-            <Typography variant="h5">Payment Details</Typography>
-          </Grid>
-          <Grid item className="checkout-row">
+          <div className="flex flex-col w-3/4">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              className="border-2 px-2 py-1 rounded-md"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col w-3/4">
+            <label htmlFor="street-address">Street Address</label>
+            <input
+              id="street-address"
+              name="streetAddress"
+              value={values.streetAddress}
+              onChange={handleChange}
+              className="border-2 px-2 py-1 rounded-md"
+              required
+            />
+          </div>
+          <div className="flex flex-col w-3/4">
+            <label htmlFor="city">City</label>
+            <input
+              id="city"
+              name="city"
+              value={values.city}
+              onChange={handleChange}
+              className="border-2 px-2 py-1 rounded-md"
+              required
+            />
+          </div>
+          <div className="flex flex-col w-3/4">
+            <label htmlFor="state">State</label>
+            <input
+              id="state"
+              name="state"
+              value={values.state}
+              onChange={handleChange}
+              className="border-2 px-2 py-1 rounded-md"
+              required
+            />
+          </div>
+          <div className="mt-4">
+            <h2 className="text-3xl mb-2 text-center">Payment Details</h2>
             <StripeContainer />
-          </Grid>
-        </Grid>
-      </Grid>
-    </>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,43 +1,43 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CheckoutItem from "./CheckoutItem";
-import { Grid, Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const Confirmation = () => {
   const order = useSelector((state) => state.cart);
+  const history = useHistory();
 
   const totalPrice = order.reduce((accum, val) => {
     return (accum += val.price * val.qty);
   }, 0);
 
   return (
-    <>
-      <Grid container className="mb">
-        <Grid item>
-          <Typography variant="h5">
-            Thank you for orders one of our world's famous cookies!
-          </Typography>
-        </Grid>
-      </Grid>
+    <div className="flex flex-col items-center">
+      <div>
+        <h2 className="text-2xl">
+          Thank you for orders one of our world's famous cookies!
+        </h2>
+      </div>
 
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item xs={12} sm={6}>
-          <Typography variant="body1">Order Summary:</Typography>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3} className="checkout-products">
+      <div className="mt-8 border-2 p-4 m-4 w-[400px] md:w-full md:max-w-[620px]">
+        <h2 className="text-center text-xl">Order Summary</h2>
+
+        <div className="checkout-products">
           {order.map((item) => (
             <CheckoutItem key={item.id} product={item} />
           ))}
           Total: ${totalPrice}
-        </Grid>
-      </Grid>
-    </>
+        </div>
+      </div>
+      <div className="mt-4">
+        <button
+          className="rounded-md bg-blue-600 py-2 px-6 drop-shadow-lg text-white"
+          onClick={() => history.push("/")}
+        >
+          Back To Home
+        </button>
+      </div>
+    </div>
   );
 };
 

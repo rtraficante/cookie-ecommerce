@@ -6,19 +6,12 @@ const CheckoutItem = (props) => {
   const { product } = props;
 
   return (
-    <Link to={`/products/${product.id}`} className="checkout-item">
-      <img
-        src={product.imageURL}
-        alt="image of cookie"
-        style={{ maxWidth: 150 }}
-      />
-      <div className="checkout-details">
+    <Link to={`/products/${product.id}`} className="checkout-item ">
+      <div className="checkout-details mt-4">
         <Typography variant="h5">{product.name}</Typography>
         <Typography variant="body1">
-          Price: ${product.price} x {product.qty}
-        </Typography>
-        <Typography variant="body1">
-          Total: ${product.price * product.qty}
+          Price: ${product.price} x {product.qty} = $
+          {product.price * product.qty}
         </Typography>
       </div>
     </Link>

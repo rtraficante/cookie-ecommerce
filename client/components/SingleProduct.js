@@ -37,9 +37,9 @@ function SingleProduct(props) {
   return (
     <div className="w-full">
       <div className="flex justify-center">
-        <div className="flex justify-around border-2 py-8 w-5/6">
+        <div className="flex justify-around py-8 w-5/6">
           <img
-            className="max-w-[400px] rounded-md drop-shadow-md"
+            className="max-w-[600px] rounded-md drop-shadow-md"
             src={imageURL}
           />
           <div className="mt-32 w-1/4">

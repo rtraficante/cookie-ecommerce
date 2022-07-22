@@ -3,7 +3,6 @@ const router = require("express").Router();
 
 router.post("/", async (req, res) => {
   try {
-    console.log(process.env);
     const { amount, id } = req.body;
     const payment = await stripe.paymentIntents.create({
       amount,

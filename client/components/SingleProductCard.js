@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
-function SingleProductCard({ product, cartItem }) {
+function SingleProductCard({ product, cartItem, handleCartQty }) {
   // const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -48,7 +48,11 @@ function SingleProductCard({ product, cartItem }) {
           <p className="text-center mr-2 font-bold">QTY:</p>
           <select
             className="border-2 rounded-xl p-2"
-            onChange={handleQtyChange}
+            onChange={
+              cartItem
+                ? (e) => handleCartQty(product, e.target.value)
+                : handleQtyChange
+            }
           >
             {mapInventory(inventory).map((val) => (
               <option key={val} value={val}>
@@ -58,20 +62,22 @@ function SingleProductCard({ product, cartItem }) {
           </select>
         </div>
       </div>
-      <div className="flex justify-between">
-        <button
-          className="py-2 px-4 bg-blue-700 text-white rounded-lg"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </button>
-        <button
-          onClick={() => history.push(`/products/${product.id}`)}
-          className="py-2 px-4 bg-blue-400 text-white rounded-lg"
-        >
-          View Details
-        </button>
-      </div>
+      {cartItem ? null : (
+        <div className="flex justify-between">
+          <button
+            className="py-2 px-4 bg-blue-700 text-white rounded-lg"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+          <button
+            onClick={() => history.push(`/products/${product.id}`)}
+            className="py-2 px-4 bg-blue-400 text-white rounded-lg"
+          >
+            View Details
+          </button>
+        </div>
+      )}
     </div>
   );
 }

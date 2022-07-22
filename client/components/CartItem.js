@@ -5,13 +5,13 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 const CartItem = (props) => {
-  const { product, removeFromCart, handleQtyChange } = props;
+  const { product, removeFromCart, handleCartQty } = props;
 
   return (
-    <div key={product.id}>
+    <div key={product.id} className="flex flex-col items-center">
       <SingleProductCard
         product={product}
-        handleQtyChange={handleQtyChange}
+        handleCartQty={handleCartQty}
         cartItem={true}
       />
       <div style={{ paddingTop: 3 }}>

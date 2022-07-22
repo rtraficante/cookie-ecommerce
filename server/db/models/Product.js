@@ -7,11 +7,8 @@ const Product = db.define("product", {
     allowNull: false,
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.STRING,
     allowNull: false,
-    validate: {
-      min: 0,
-    },
   },
   category: {
     type: Sequelize.STRING,

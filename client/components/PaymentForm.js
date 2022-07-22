@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import {
+  CardElement,
+  useElements,
+  useStripe,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,13 +16,13 @@ const CARD_OPTIONS = {
   style: {
     base: {
       iconColor: "#c4f0ff",
-      color: "#fff",
+      color: "blue",
       fontWeight: 500,
       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
       fontSize: "16px",
       fontSmoothing: "antialiased",
-      ":-webkit-autofill": { color: "#fce883" },
-      "::placeholder": { color: "#87bbfd" },
+      ":-webkit-autofill": { color: "blue" },
+      "::placeholder": { color: "gray" },
     },
     invalid: {
       iconColor: "#ffc7ee",
@@ -68,15 +73,22 @@ const PaymentForm = () => {
   return (
     <>
       {!success ? (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col items-center">
           <fieldset className="form-group">
-            <div className="form-row">
-              <CardElement options={CARD_OPTIONS} />
+            <div className="form-row mt-4">
+              <CardElement
+                options={CARD_OPTIONS}
+                className="w-[300px] border-2 rounded-md py-2 px-1"
+              />
             </div>
           </fieldset>
-          <Button type="submit" color="primary" variant="contained">
+
+          <button
+            type="submit"
+            className="bg-blue-600 py-3 px-20 text-white rounded-lg drop-shadow-lg mt-4"
+          >
             Complete Payment
-          </Button>
+          </button>
         </form>
       ) : (
         <div>
