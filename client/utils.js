@@ -1,0 +1,2 @@
+export const REACT_APP_STRIPE_PROMISE =
+  "pk_test_51LDBLhL5DnX6BuqIXxswtW44aAg0Ux6jif6SsWDTNCGWoh9cdzzzDa5WeY3sQF0bxBZWMBKMvfylw2CWeISpnZuY00SFWXhvlO";

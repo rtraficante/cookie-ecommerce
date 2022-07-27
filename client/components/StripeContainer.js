@@ -2,8 +2,9 @@ import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "./PaymentForm";
+import { REACT_APP_STRIPE_PROMISE } from "../utils";
 
-const stripeTestPromise = loadStripe(process.env.REACT_APP_STRIPE_PROMISE);
+const stripeTestPromise = loadStripe(REACT_APP_STRIPE_PROMISE);
 
 const StripeContainer = () => {
   return (
