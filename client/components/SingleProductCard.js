@@ -15,7 +15,8 @@ function SingleProductCard({ product, cartItem, handleCartQty }) {
   const handleAddToCart = () => {
     console.log(product, qty);
     dispatch(addToCart(product, qty));
-    // history.push("/cart");
+
+    history.push("/cart");
   };
 
   const mapInventory = (num) => {
@@ -65,11 +66,12 @@ function SingleProductCard({ product, cartItem, handleCartQty }) {
       {cartItem ? null : (
         <div className="flex justify-between">
           <button
-            className="py-2 px-4 bg-blue-700 text-white rounded-lg"
+            className="py-2 px-4 bg-blue-700 text-white rounded-lg hover:opacity-80 hover:scale-105 ease-in duration-150"
             onClick={handleAddToCart}
           >
             Add to Cart
           </button>
+
           <button
             onClick={() => history.push(`/products/${product.id}`)}
             className="py-2 px-4 bg-blue-400 text-white rounded-lg"

@@ -47,7 +47,7 @@ function AllProducts() {
             ))}
           </select>
         </div>
-        <div className="flex flex-wrap justify-center md:justify-start items-center max-w-[1300px]">
+        <div className="flex justify-center flex-wrap items-center max-w-[1300px]">
           {filter !== "all"
             ? products
                 .filter((product) => filter === product.category)

@@ -1,12 +1,14 @@
 import { connect } from "react-redux";
 import { logout } from "../store";
-import React from "react";
+import React, { startTransition } from "react";
 import DropDownMenu from "./DropdownMenu";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
   const history = useHistory();
+  const cart = useSelector((state) => state.cart);
 
   return (
     <div className="bg-blue-700 fixed w-full drop-shadow-xl z-50">
@@ -19,11 +21,16 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
           />
           <h2 className="font-bold text-white text-xl">GS-TEAM-Q</h2>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <ShoppingCartIcon
             className="cursor-pointer"
             onClick={() => history.push("/cart")}
           />
+          {cart.length ? (
+            <div className="rounded-full bg-red-600 absolute w-5 h-5 shadow-md top-2 border ml-2 animate-bounce ">
+              <p className="text-center text-sm">{cart.length}</p>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
