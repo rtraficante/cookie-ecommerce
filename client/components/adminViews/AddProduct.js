@@ -26,39 +26,71 @@ export const AddProduct = () => {
   };
 
   return (
-    <form
-      id="add-product-form"
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (values.imageURL === "") values.imageURL = undefined;
-        dispatch(addProduct(values, history));
-      }}
-    >
-      <label>
-        Name:
-        <input name="name" type="text" placeholder="Name" value={values.name} onChange={handleChange} />
-      </label>
-      <label>
-        Price:
-        <input name="price" type="number" placeholder="Price" value={values.price} onChange={handleChange} />
-      </label>
-      <label>
-        Inventory:
-        <input name="inventory" type="number" placeholder="Inventory" value={values.inventory} onChange={handleChange} />
-      </label>
-      <label>
-        Description:
-        <input name="description" type="text" placeholder="Description" value={values.description} onChange={handleChange} />
-      </label>
-      <label>
-        Image URL:
-        <input name="imageURL" type="text" placeholder="Image URL" value={values.imageURL} onChange={handleChange} />
-      </label>
-      <p></p>
-      <Button variant="contained" color="primary" type="submit">
-        Submit
-      </Button>
-    </form>
+    <div className="flex justify-center">
+      <form
+        id="add-product-form"
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (values.imageURL === "") values.imageURL = undefined;
+          dispatch(addProduct(values, history));
+        }}
+        className="flex flex-col w-full m-2 border shadow-sm rounded-md p-6 px-8 space-y-4 max-w-[680px]"
+      >
+        <h2 className="font-bold text-lg">Add Product</h2>
+        <input
+          name="name"
+          type="text"
+          placeholder="Product Name"
+          value={values.name}
+          onChange={handleChange}
+          className="p-4 py-2 border rounded-md border-gray-400 "
+        />
+        <div className="flex flex-col">
+          <label htmlFor="price">Price</label>
+          <input
+            id="price"
+            name="price"
+            type="number"
+            placeholder="Price"
+            value={values.price}
+            onChange={handleChange}
+            className="p-4 py-2 border rounded-md border-gray-400 "
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="inventory">Inventory</label>
+          <input
+            id="inventory"
+            name="inventory"
+            type="number"
+            placeholder="Inventory"
+            value={values.inventory}
+            onChange={handleChange}
+            className="p-4 py-2 border rounded-md border-gray-400 "
+          />
+        </div>
+        <input
+          name="description"
+          type="text"
+          placeholder="Description"
+          value={values.description}
+          onChange={handleChange}
+          className="p-4 py-2 border rounded-md border-gray-400 "
+        />
+        <input
+          name="imageURL"
+          type="text"
+          placeholder="Image URL"
+          value={values.imageURL}
+          onChange={handleChange}
+          className="p-4 py-2 border rounded-md border-gray-400 "
+        />
+        <p></p>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
+      </form>
+    </div>
   );
 };
 

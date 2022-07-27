@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SingleProductCard from "./SingleProductCard";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
+import CloseIcon from "@material-ui/icons/Close";
 
 const CartItem = (props) => {
   const { item, handleRemoveFromCart, handleCartQty, mapInventory } = props;
@@ -33,7 +34,7 @@ const CartItem = (props) => {
           className="text-right cursor-pointer"
           onClick={() => handleRemoveFromCart(item.id)}
         >
-          X
+          <CloseIcon className="hover:opacity-40 hover:scale-125" />
         </h2>
       </div>
     </div>

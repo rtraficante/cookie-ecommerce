@@ -128,28 +128,30 @@ export const removeFromCart = (id) => {
   };
 };
 
-
-export const getAllOrders = () => {
-  return async (dispatch, getState) => {
+export const getAllOrders = (user) => {
+  return async (dispatch) => {
     try {
-      const token = localStorage.getItem("token");
-      // const id = getState().auth.id;
-      // console.log(id);
-      const { data } = await axios.get("/api/cart/orders", {
-        headers: {
-          id: getState().auth.id,
-          authorization: token,
-        },
-      });
-      dispatch(_getAllOrders(data));
+      if (Object.keys(user).length !== 0) {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get("/api/cart/orders", {
+          headers: {
+            id: user.id,
+            authorization: token,
+          },
+        });
+        console.log(data);
+        dispatch(_getAllOrders(data));
+      }
     } catch (err) {
       console.error(err);
     }
   };
 };
 
-const cartLocalStorage = localStorage.getItem("cart") && localStorage.getItem("cart") !== "undefined" ? JSON.parse(localStorage.getItem("cart")) : [];
-
+const cartLocalStorage =
+  localStorage.getItem("cart") && localStorage.getItem("cart") !== "undefined"
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
 
 const initialState = cartLocalStorage;
 
@@ -174,7 +176,9 @@ export const cartReducer = (state = initialState, action) => {
 
     case EDIT_CART:
       const existsInCart = state.find((item) => item.id === action.product.id);
-      return state.map((item) => (item.id === existsInCart.id ? action.product : item));
+      return state.map((item) =>
+        item.id === existsInCart.id ? action.product : item
+      );
 
     case GET_ALL_ORDERS:
       return action.orders;

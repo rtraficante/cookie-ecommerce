@@ -50,6 +50,7 @@ const Cart = () => {
         <div className="pt-4 md:w-2/3">
           {cart.map((item) => (
             <CartItem
+              key={item.id}
               item={item}
               handleRemoveFromCart={handleRemoveFromCart}
               handleCartQty={handleCartQty}
@@ -75,14 +76,14 @@ const Cart = () => {
           <div className="m-4 mt-8 flex flex-col justify-center space-y-6">
             {cart.length ? (
               <Link to={"/checkout"}>
-                <button className="bg-blue-500 py-4 w-full text-white">
+                <button className="bg-blue-500 py-4 w-full text-white hover:opacity-80 rounded-md">
                   Checkout
                 </button>
               </Link>
             ) : null}
             <Link
               to={"/products"}
-              className="text-sm text-blue-600 text-center"
+              className="text-sm text-blue-600 text-center hover:opacity-80 hover:underline"
             >
               CONTINUE SHOPPING
             </Link>

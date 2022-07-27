@@ -34,10 +34,10 @@ function SingleProductCard({ product, cartItem, handleCartQty }) {
   const { imageURL, name, price, inventory } = product;
 
   return (
-    <div className="flex flex-col justify-center  p-4 m-4 border-2 rounded-xl w-[280px] max-w-[280px]">
+    <div className="flex flex-col justify-center  p-4 m-4 border rounded-md w-[280px] max-w-[280px]">
       <h2 className="text-center font-bold text-lg">{name}</h2>
       <img
-        className="max-h-[240px] border-2 mt-2 rounded-lg"
+        className="max-h-[240px] border mt-2 rounded-lg"
         src={imageURL}
         alt="image of cookie"
       />
@@ -74,7 +74,7 @@ function SingleProductCard({ product, cartItem, handleCartQty }) {
 
           <button
             onClick={() => history.push(`/products/${product.id}`)}
-            className="py-2 px-4 bg-blue-400 text-white rounded-lg"
+            className="py-2 px-4 bg-blue-400 text-white rounded-lg hover:opacity-80 hover:scale-105 ease-in duration-150"
           >
             View Details
           </button>

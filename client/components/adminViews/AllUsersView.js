@@ -13,25 +13,40 @@ const AllUsersView = () => {
   }, []);
 
   return (
-    <div>
-      <Container maxWidth="lg" sx={{ marginY: 12 }}>
-        <Grid container spacing={5}>
-          {users.map((user) => {
-            return (
-              <Grid item xs={3} key={user.id}>
-                <Paper elevation={3}>
-                  <SingleUserView user={user} variant="contained" />
-                  <Box padding={1} bgcolor="#a05050" align="center">
-                    <Typography color="inherit" variant="subtitle1" component="h4">
-                      E-MAIL: {user.email.toUpperCase()}
-                    </Typography>
-                  </Box>
-                </Paper>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Container>
+    <div className="w-full flex justify-start md:justify-center text-xs md:text-sm">
+      <div className="overflow-scroll h-[90vh]">
+        <table className="w-[95%] m-4 mt-1 border-separate border-spacing-y-2 table-auto max-w-[900px] overflow-scroll">
+          <tbody>
+            <tr className="shadow-sm">
+              <th className="rounded-md text-center p-2">Username</th>
+              <th className="rounded-md rounded-r-none text-center">
+                First Name
+              </th>
+              <th className="rounded-md rounded-l-none rounded-r-none text-center">
+                Last Name
+              </th>
+              <th className="rounded-md rounded-l-none text-center">Email</th>
+            </tr>
+
+            {users.map((user) => (
+              <tr key={user.id} className="shadow-sm">
+                <td className="rounded0md text-center rounded-r-none p-2">
+                  {user.username}
+                </td>
+                <td className="rounded0md text-center rounded-l-none rounded-r-none">
+                  {user.firstName}
+                </td>
+                <td className="rounded0md text-center rounded-l-none rounded-r-none">
+                  {user.lastName}
+                </td>
+                <td className="rounded0md text-center rounded-l-none">
+                  {user.email}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

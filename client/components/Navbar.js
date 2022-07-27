@@ -19,7 +19,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => {
             isLoggedIn={isLoggedIn}
             isAdmin={isAdmin}
           />
-          <h2 className="font-bold text-white text-xl">GS-TEAM-Q</h2>
+          <h2 className="font-bold text-white text-xl">COOKIES</h2>
         </div>
         <div className="flex items-center ">
           <ShoppingCartIcon

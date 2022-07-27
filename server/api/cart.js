@@ -40,7 +40,7 @@ router.get("/", requireToken, async (req, res) => {
 router.get("/orders", requireToken, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.headers.id);
-    console.log("user", req.headers.id);
+
     const orders = await Order.findAll({
       where: {
         userId: user.id,

@@ -15,7 +15,7 @@ const Confirmation = () => {
     <div className="flex flex-col items-center">
       <div>
         <h2 className="text-2xl">
-          Thank you for orders one of our world's famous cookies!
+          Thank you for ordering one of our world's famous cookies!
         </h2>
       </div>
 
