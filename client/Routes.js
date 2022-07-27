@@ -51,8 +51,6 @@ class Routes extends Component {
           ) : (
             <>
               <Login />
-              <br />
-              <Signup />
             </>
           )}
         </Route>

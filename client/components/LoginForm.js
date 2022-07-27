@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store";
+import { Link } from "react-router-dom";
 
 /**
  * COMPONENT
@@ -43,6 +44,13 @@ const LoginForm = (props) => {
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
+
+        <h2 className="mt-4">
+          No account?{" "}
+          <Link className="text-blue-600 hover:underline" to="/signup">
+            Signup Here
+          </Link>
+        </h2>
       </div>
     </div>
   );
