@@ -78,7 +78,7 @@ const PaymentForm = () => {
             <div className="form-row mt-4">
               <CardElement
                 options={CARD_OPTIONS}
-                className="w-[300px] border-2 rounded-md py-2 px-1"
+                className="w-[420px] border-2 rounded-md py-2 px-1"
               />
             </div>
           </fieldset>

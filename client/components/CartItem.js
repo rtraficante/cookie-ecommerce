@@ -5,23 +5,36 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 const CartItem = (props) => {
-  const { product, removeFromCart, handleCartQty } = props;
+  const { item, handleRemoveFromCart, handleCartQty, mapInventory } = props;
 
   return (
-    <div key={product.id} className="flex flex-col items-center">
-      <SingleProductCard
-        product={product}
-        handleCartQty={handleCartQty}
-        cartItem={true}
-      />
-      <div style={{ paddingTop: 3 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => removeFromCart(product.id)}
+    <div className="my-4 flex space-x-6 border-b pb-4 flex-1">
+      <img className="w-44 h-44" src={item.imageURL} />
+      <div className="flex flex-col items-start justify-evenly">
+        <h2 className="text-2xl">{item.name}</h2>
+        <h5 className="text-red-600">${item.price}</h5>
+        <select
+          className="border-2 rounded-xl p-2"
+          onChange={(e) => handleCartQty(item, e.target.value)}
+          value={item.qty}
         >
-          Remove From Cart
-        </Button>
+          {mapInventory(item.inventory).map((val) => (
+            <option key={val} value={val}>
+              {val}
+            </option>
+          ))}
+        </select>
+        <h2>
+          <strong>Total: </strong>${item.price * item.qty}
+        </h2>
+      </div>
+      <div className="flex-1">
+        <h2
+          className="text-right cursor-pointer"
+          onClick={() => handleRemoveFromCart(item.id)}
+        >
+          X
+        </h2>
       </div>
     </div>
   );

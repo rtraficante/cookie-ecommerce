@@ -6,7 +6,6 @@ import StripeContainer from "./StripeContainer";
 import { checkout } from "../store/checkout";
 import { useHistory } from "react-router-dom";
 
-
 const Checkout = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -40,79 +39,92 @@ const Checkout = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col justify-center items-center w-3/4 max-w-[900px]">
-        <div className="checkout-products border-2 p-4 w-full">
-          <a href="/cart">Return To Cart</a>
+      <div className="flex flex-col justify-center items-center w-full lg:flex-row-reverse">
+        <div className="checkout-products border-b lg:border lg:h-full lg:w-1/3 p-4 w-full flex flex-col items-center">
+          <a href="/cart" className="self-start">
+            Return To Cart
+          </a>
           {cart.length === 0 ? (
             <div>Nothing to checkout</div>
           ) : (
             cart.map((item) => <CheckoutItem key={item.id} product={item} />)
           )}
-          Total: ${totalPrice}
+          <div className="flex w-3/4 justify-between mt-6 border-t py-4">
+            <p>Total</p>
+            <p className="font-bold">${totalPrice}</p>
+          </div>
         </div>
 
-        <div className="border-2 mt-4 w-full p-4 flex flex-col items-center">
-          <h2 className="text-3xl">Shipping Details</h2>
-
-          <div className="flex flex-col w-3/4">
-            <label htmlFor="name">Name</label>
-            <input
-              id="name"
-              name="name"
-              value={values.name}
-              onChange={handleChange}
-              className="border-2 px-2 py-1 rounded-md"
-              required
-            />
+        <div className="border-b mt-4 w-full p-4 flex flex-col items-center lg:w-2/3 max-w-[900px]">
+          <div className="w-3/4">
+            <h2 className="text-xl">Contact Information</h2>
           </div>
 
-          <div className="flex flex-col w-3/4">
-            <label htmlFor="email">Email</label>
+          <div className="flex flex-col w-3/4 mt-4">
             <input
               id="email"
               name="email"
               value={values.email}
               onChange={handleChange}
-              className="border-2 px-2 py-1 rounded-md"
+              placeholder="Email"
+              className="border-2 px-3 py-2 rounded-md"
               required
             />
           </div>
 
-          <div className="flex flex-col w-3/4">
-            <label htmlFor="street-address">Street Address</label>
+          <div className="w-3/4 mt-6 mb-2">
+            <h2 className="text-xl">Shipping Details</h2>
+          </div>
+
+          <div className="flex flex-col w-3/4 mt-4">
+            <input
+              id="name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              placeholder="Full Name"
+              className="border-2 px-3 py-2  rounded-md"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col w-3/4 mt-4">
             <input
               id="street-address"
               name="streetAddress"
               value={values.streetAddress}
               onChange={handleChange}
-              className="border-2 px-2 py-1 rounded-md"
+              placeholder="Address"
+              className="border-2 px-3 py-2  rounded-md"
               required
             />
           </div>
-          <div className="flex flex-col w-3/4">
-            <label htmlFor="city">City</label>
+          <div className="flex flex-col w-3/4 mt-4">
             <input
               id="city"
               name="city"
               value={values.city}
               onChange={handleChange}
-              className="border-2 px-2 py-1 rounded-md"
+              placeholder="City"
+              className="border-2 px-3 py-2  rounded-md"
               required
             />
           </div>
-          <div className="flex flex-col w-3/4">
-            <label htmlFor="state">State</label>
+          <div className="flex flex-col w-3/4 mt-4">
             <input
               id="state"
               name="state"
               value={values.state}
               onChange={handleChange}
-              className="border-2 px-2 py-1 rounded-md"
+              placeholder="State"
+              className="border-2 px-3 py-2  rounded-md"
               required
             />
           </div>
-          <div className="mt-4">
-            <h2 className="text-3xl mb-2 text-center">Payment Details</h2>
+          <div className="mt-6 w-3/4">
+            <div className="w-3/4">
+              <h2 className="text-xl">Payment Details</h2>
+            </div>
             <StripeContainer />
           </div>
         </div>

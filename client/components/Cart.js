@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, loadFromUser, editCart } from "../store/cart";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,14 @@ const Cart = () => {
     dispatch(removeFromCart(id));
   };
 
+  const mapInventory = (num) => {
+    const nums = [];
+    for (let i = 1; i <= num; i++) {
+      nums.push(i);
+    }
+    return nums;
+  };
+
   const total = () => {
     let totalPrice = 0;
     cart.forEach((item) => {
@@ -33,46 +42,51 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-col items-center justify-center md:flex-row md:justify-between w-full max-w-[1200px]">
-        {cart.length === 0 ? null : (
-          <div className="flex flex-col items-center border-2 p-4 md:w-2/6 rounded-md w-[280px] max-w-[600px] h-[300px]">
-            <div className="w-full pt-8">
-              {cart.map((item) => (
-                <div key={item.id} className="flex justify-between mb-4 mt-1">
-                  <h5>
-                    {item.name} x {item.qty}
-                  </h5>
-                  <p>${item.price * item.qty}</p>
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-between w-full">
-              <h2>Total: </h2>
-              <h2>${total()}</h2>
-            </div>
-            <div className="mt-16">
-              <Button href="/checkout" variant="contained" color="primary">
-                Proceed To Checkout
-              </Button>
-            </div>
+    <div className="mt-6">
+      <div className="m-4">
+        <h2 className="text-2xl">SHOPPING CART</h2>
+      </div>
+      <div className="border-t m-4 md:flex md:space-x-6">
+        <div className="pt-4 md:w-2/3">
+          {cart.map((item) => (
+            <CartItem
+              item={item}
+              handleRemoveFromCart={handleRemoveFromCart}
+              handleCartQty={handleCartQty}
+              mapInventory={mapInventory}
+            />
+          ))}
+        </div>
+        <div className="md:w-1/3 flex-1">
+          <div className="m-4">
+            {cart.length ? (
+              <div className="flex justify-between font-bold">
+                <h2>Subtotal</h2>
+                <h2>${total()}</h2>
+              </div>
+            ) : (
+              <div className="border p-4">
+                <h2 className="text-center">
+                  There are no items in your cart.
+                </h2>
+              </div>
+            )}
           </div>
-        )}
-        <div>
-          {cart.length === 0 ? (
-            <h2 className="text-2xl text-center">Your cart is empty</h2>
-          ) : (
-            <div className="flex flex-col md:flex-row">
-              {cart.map((item) => (
-                <CartItem
-                  key={item.id}
-                  product={item}
-                  removeFromCart={handleRemoveFromCart}
-                  handleCartQty={handleCartQty}
-                />
-              ))}
-            </div>
-          )}
+          <div className="m-4 mt-8 flex flex-col justify-center space-y-6">
+            {cart.length ? (
+              <Link to={"/checkout"}>
+                <button className="bg-blue-500 py-4 w-full text-white">
+                  Checkout
+                </button>
+              </Link>
+            ) : null}
+            <Link
+              to={"/products"}
+              className="text-sm text-blue-600 text-center"
+            >
+              CONTINUE SHOPPING
+            </Link>
+          </div>
         </div>
       </div>
     </div>
