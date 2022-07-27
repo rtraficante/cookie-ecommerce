@@ -3,7 +3,6 @@ import CartItem from "./CartItem";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart, loadFromUser, editCart } from "../store/cart";
-import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 const Cart = () => {

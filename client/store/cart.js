@@ -139,7 +139,6 @@ export const getAllOrders = (user) => {
             authorization: token,
           },
         });
-        console.log(data);
         dispatch(_getAllOrders(data));
       }
     } catch (err) {
