@@ -14,6 +14,16 @@ const SignUpForm = (props) => {
         <h2 className="text-2xl mb-4">Sign up</h2>
         <form onSubmit={handleSubmit} name={name}>
           <div className="flex flex-col">
+            <label htmlFor="email">
+              <h2>Email</h2>
+            </label>
+            <input
+              name="email"
+              type="text"
+              className="border-2 drop-shadow-md p-2 rounded-md"
+            />
+          </div>
+          <div className="flex flex-col">
             <label htmlFor="username">
               <h2>Username</h2>
             </label>
